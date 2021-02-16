@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server",
     "test": "jest",
-    "test:watch": "jest --noStackTrace --watchAll",
+    "test:watch": "jest --noStackTrace --watchAll --coverage",
     "dev": "run-p dev:client dev:server",
     "dev:client": "npm run webpack -- --watch",
     "dev:server": "nodemon --watch server server/index.js",
