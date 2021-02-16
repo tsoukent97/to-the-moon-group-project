@@ -30,7 +30,7 @@ This repo includes:
 
 ## orders api
 
-The GET /orders/open request will send back an object as follows:
+The GET /api/v1/orders/open request will send back an object as follows:
 ```
 [
   {
