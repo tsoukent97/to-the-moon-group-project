@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 
 import { fetchFruits } from '../actions'
 
+import Balance from './Balance.jsx'
+import OpenOrders from './OpenOrders.jsx'
+
 function App (props) {
   useEffect(() => {
     props.dispatch(fetchFruits())
