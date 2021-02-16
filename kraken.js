@@ -15,12 +15,14 @@ const kraken = new KrakenClient(key, secret)
 // CancelOrder
 // AddOrder
 
-kraken.api('Ticker', {pair: 'XXBTZUSD, XLTCZUSD'})
-  .then(res => {
+// kraken.api('Ticker', {pair: 'XXBTZUSD, XLTCZUSD'})
+//   .then(res => {
 
-    console.log(res.result)
-    return null
-  })
-  .catch(e => {
-    console.log(e)
-  })
+//     console.log(res.result)
+//     return null
+//   })
+//   .catch(e => {
+//     console.log(e)
+//   })
+
+module.exports = kraken
