@@ -31,6 +31,7 @@ This repo includes:
 ## orders api
 
 The GET /orders/open request will send back an object as follows:
+```
 [
   {
     id: 'OTGZ4R-5DLAK-2LOQCQ',
@@ -57,3 +58,4 @@ The GET /orders/open request will send back an object as follows:
     type: 'sell'
   }
 ]
+```
