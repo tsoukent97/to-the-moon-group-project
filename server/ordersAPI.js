@@ -6,6 +6,8 @@ const secret = process.env.KRAKEN_API_SECRET
 
 function openOrders () {
   const kraken = new KrakenClient(key, secret)
+  console.log(kraken.api)
+  // console.log(kraken())
   return kraken.api('OpenOrders')
     .then(res => {
       console.log(res.result)

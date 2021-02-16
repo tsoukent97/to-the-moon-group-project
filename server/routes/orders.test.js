@@ -1,12 +1,12 @@
 const KrakenClient = require('kraken-api')
 // TODO Change line 3 to point to './orders.js'
-const { callAPI } = require('../../orders')
+const { openOrders } = require('../ordersAPI')
 
-jest.mock('kraken-api', () => jest.fn())
-const fakeKraken = { api: jest.fn() }
+jest.mock('kraken-api'/* , () => jest.fn() */)
+const fakeKraken = { api: jest.fn(() => Promise.resolve({ result: 'apiResponse' })) }
 KrakenClient.mockImplementation(() => fakeKraken)
 
-describe('callAPI', () => {
+describe('openOrders', () => {
   const apiResponse = [
     {
       id: 'OTGZ4R-5DLAK-2LOQCQ',
@@ -35,9 +35,9 @@ describe('callAPI', () => {
   ]
 
   test('calls OpenOrders', () => {
-    fakeKraken.api.mockImplementation(() => Promise.resolve({ result: apiResponse }))
+    KrakenClient.api.mockImplementation(() => Promise.resolve({ result: apiResponse }))
     // TODO Change to openOrders function call
-    return callAPI('OpenOrders')
+    return openOrders()
       .then(actual => {
         expect(actual).toEqual(apiResponse)
         return null
