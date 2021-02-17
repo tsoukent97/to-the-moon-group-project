@@ -17,7 +17,6 @@ describe('openOrders', () => {
         expect(typeof actual).toEqual('object')
         expect(actual).toHaveLength(received.length)
         expect(actual[0].id).toEqual(received[0])
-        // TODO Check that actual[0]'s keys exist inside apiResponse's objects...
         expect(actual[0]).toMatchObject(apiResponse.open[received[0]])
         return null
       })

@@ -25,6 +25,6 @@ function callAPI () {
     })
 }
 
-callAPI().then(console.log)
+// callAPI().then(console.log)
 
 module.exports = { callAPI }
