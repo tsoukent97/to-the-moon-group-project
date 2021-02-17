@@ -5,13 +5,9 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
-  try {
-    const balances = await getBalances()
-    const assetInfo = await getAssetInfo(balances)
-    return res.json(assetInfo)
-  } catch (err) {
-    throw err
-  }
+  const balances = await getBalances()
+  const assetInfo = await getAssetInfo(balances)
+  return res.json(assetInfo)
 })
 
 module.exports = router

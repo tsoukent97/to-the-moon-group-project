@@ -5,7 +5,7 @@ const { getBalances, getAssetInfo } = require('../kraken')
 
 jest.mock('../kraken', () => ({
   getBalances: jest.fn(),
-  getAssetInfo: jest.fn(),
+  getAssetInfo: jest.fn()
 }))
 
 test('getBalances resolves with balance object', () => {
@@ -17,9 +17,9 @@ test('getBalances resolves with balance object', () => {
           ZUSD: '9.9840',
           XXBT: '0.0017530100',
           XLTC: '0.0001500000',
-          XETH: '0.0000068000',
-        },
-      },
+          XETH: '0.0000068000'
+        }
+      }
     })
   })
   getAssetInfo.mockImplementation(() => {
@@ -28,8 +28,8 @@ test('getBalances resolves with balance object', () => {
         token: 'LUKLHD',
         amount: 48754,
         priceUsd: 34598,
-        amountUsd: 423024,
-      },
+        amountUsd: 423024
+      }
     ])
   })
   request(server)
@@ -37,8 +37,18 @@ test('getBalances resolves with balance object', () => {
     .expect('Content-Type', /json/)
     .expect(200)
     .then(res => {
-      //more tests about the response
+      expect(res).toBe([
+        {
+          token: 'LUKLHD',
+          amount: 48754,
+          priceUsd: 34598,
+          amountUsd: 423024
+        }
+      ])
+      // more tests about the response
       expect(getBalances).toHaveBeenCalled()
       expect(getAssetInfo).toHaveBeenCalled()
+      return res
     })
+    .catch(err => err.message)
 })
