@@ -17,6 +17,5 @@ function openOrders () {
       console.log(e)
     })
 }
-openOrders()
 
 module.exports = { openOrders }
