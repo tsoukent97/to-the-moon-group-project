@@ -3,27 +3,27 @@ import React, { useState, useEffect } from 'react'
 import { getBalance } from '../apis'
 
 function Balance () {
-
   const [balances, setBalances] = useState([])
 
   useEffect(() => {
     return getBalance()
-      .then((data => {
+      .then(data => {
         setBalances(data)
-      }))
+      })
   }, [])
 
   // console.log(balances)
 
   return (
     <div className='balances'>
+      <h1>Wallet Balance</h1>
       <table>
         <thead>
           <tr>
-            <td>Token</td>
-            <td>Amount</td>
-            <td>USD Price</td>
-            <td>USD Value</td>
+            <td data-testid='testData'>Token</td>
+            <td data-testid='testData'>Amount</td>
+            <td data-testid='testData'>USD Price</td>
+            <td data-testid='testData'>USD Value</td>
           </tr>
         </thead>
         <tbody>
