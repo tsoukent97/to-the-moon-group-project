@@ -9,6 +9,14 @@ KrakenClient.mockImplementation(() => fakeKraken)
 describe('openOrders', () => {
   const apiResponse = mockOpenOrders.result
   const received = Object.keys(apiResponse.open)
+  const testObj = {
+    id: received[0],
+    opentm: apiResponse.open[received[0]].opentm,
+    vol: apiResponse.open[received[0]].vol,
+    price: apiResponse.open[received[0]].descr.price,
+    pair: apiResponse.open[received[0]].descr.pair,
+    type: apiResponse.open[received[0]].descr.type
+  }
   test('calls OpenOrders', () => {
     fakeKraken.api.mockImplementation(() => Promise.resolve({ result: apiResponse }))
     return openOrders()
@@ -17,7 +25,7 @@ describe('openOrders', () => {
         expect(typeof actual).toEqual('object')
         expect(actual).toHaveLength(received.length)
         expect(actual[0].id).toEqual(received[0])
-        expect(actual[0]).toMatchObject(apiResponse.open[received[0]])
+        expect(testObj).toMatchObject(actual[0])
         return null
       })
   })
