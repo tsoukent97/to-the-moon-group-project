@@ -1,30 +1,22 @@
-require('dotenv').config()
-const KrakenClient = require('kraken-api')
+const callKraken = require('./kraken')
 
-const key = process.env.KRAKEN_API_KEY
-const secret = process.env.KRAKEN_API_SECRET
+module.exports = {
+  getTicker,
+  getBalance
+}
 
-// https://www.kraken.com/features/api
-
-// Balance
-// Assets
-// AssetPairs
-// Ticker
-// OpenOrders
-// CancelOrder
-// AddOrder
-
-function callAPI () {
-  const kraken = new KrakenClient(key, secret)
-  return kraken.api('Ticker', { pair: 'XXBTZUSD, XLTCZUSD' })
-    .then(res => {
-      return res.result
-    })
-    .catch(e => {
-      console.log(e)
+function getTicker () {
+  return callKraken('Ticker', { pair: 'XXBTZUSD, XLTCZUSD' })
+    .then(tickerRes => tickerRes.result)
+    .catch(err => {
+      console.error(err)
     })
 }
 
-// callAPI().then(console.log)
-
-module.exports = { callAPI }
+function getBalance () {
+  return callKraken('Balance')
+    .then(balance => balance.result)
+    .catch(err => {
+      console.error(err)
+    })
+}
