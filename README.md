@@ -1,32 +1,4 @@
-# Fullstack boilerplate
-
-## Getting Started
-
-### From the Github UI
-See the instructions [here](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template) to use Github's feature to create a new repo from a template.
-
-### From the command line
-
-```
-git clone https://github.com/dev-academy-challenges/boilerplate-fullstack [your-project-name]
-cd [your-project-name]
-npm install # to install dependencies
-npm run dev # to start the dev server
-```
-
-You can find the server running on [http://localhost:3000](http://localhost:3000).
-
-## Details
-
-This repo includes:
-
-* a single, simple API endpoint (`/api/v1/fruits`)
-* a single React component (`<App />`)
-* an example database module (`server/db/fruits.js`)
-* an API client module (`client/apis/fruits.js`)
-* configuration for Jest and Enzyme (including JSDOM)
-* configuration for server-side debugging in VS Code
-* a single client-side test (`client/components/App.test.js`)
+# To the Moon
 
 ## orders api
 
@@ -57,5 +29,24 @@ The GET /api/v1/orders/open request will send back an object as follows:
     pair: 'XBTUSD',
     type: 'sell'
   }
+]
+```
+
+The GET /api/v1/balance request will send back an object as follows:
+```
+[
+  {
+    token: 'XXBTZUSD',
+    amount: 9.98,
+    amountUsd: '0.00020000',
+    valueUsd: '52000.0',
+  },
+  {
+    token: 'XLTCZUSD',
+    amount: 3.2,
+    amountUsd: '0.00020000',
+    valueUsd: '52000.0',
+  },
+  
 ]
 ```
