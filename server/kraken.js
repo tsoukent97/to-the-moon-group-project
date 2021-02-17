@@ -9,24 +9,27 @@ function getBalances() {
   return kraken
     .api('Balance')
     .then(balance => balance)
-    .catch(err => console.log(err))
+    .catch(err => console.error(err))
 }
 
 function getAssetInfo(balance) {
   const tokens = Object.keys(balance.result).slice(1)
   const pairs = tokens.map(token => token + 'ZUSD').join(', ')
-  return kraken.api('Ticker', { pair: pairs }).then(response =>
-    tokens.map(token => {
-      const amount = balance.result[token]
-      const priceUsd = response.result[token + 'ZUSD'].c[0]
-      return {
-        token,
-        amount,
-        priceUsd,
-        amountUsd: amount * priceUsd,
-      }
-    })
-  )
+  return kraken
+    .api('Ticker', { pair: pairs })
+    .then(response =>
+      tokens.map(token => {
+        const amount = balance.result[token]
+        const priceUsd = response.result[token + 'ZUSD'].c[0]
+        return {
+          token,
+          amount,
+          priceUsd,
+          amountUsd: amount * priceUsd,
+        }
+      })
+    )
+    .catch(err => console.error(err))
 }
 
 module.exports = { getBalances, getAssetInfo }
