@@ -17,19 +17,19 @@ function getAssetInfo(balance) {
   const pairs = tokens.map(token => token + 'ZUSD').join(', ')
   return kraken
     .api('Ticker', { pair: pairs })
-    .then(response =>
-      tokens.map(token => {
-        const amount = balance.result[token]
-        const priceUsd = response.result[token + 'ZUSD'].c[0]
-        return {
-          token,
-          amount,
-          priceUsd,
-          amountUsd: amount * priceUsd,
-        }
-      })
-    )
+    .then(res => tokens.map(token => mapAssetInfo(token, res, balance)))
     .catch(err => console.error(err))
+}
+
+function mapAssetInfo(token, res, balance) {
+  const amount = balance.result[token]
+  const priceUsd = res.result[token + 'ZUSD'].c[0]
+  return {
+    token,
+    amount,
+    priceUsd,
+    amountUsd: amount * priceUsd,
+  }
 }
 
 module.exports = { getBalances, getAssetInfo }
