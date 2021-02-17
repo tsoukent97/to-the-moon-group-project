@@ -1,16 +1,8 @@
-import request from 'superagent'
+import nock from 'nock'
+import { getOrders } from './index'
 
-const rootUrl = '/api/v1'
-
-export function getFruits () {
-  return request.get(rootUrl + '/fruits')
-    .then(res => {
-      return res.body.fruits
-    })
-}
-
-export function getOrders () {
-  const orders = [
+describe('getOrders', () => {
+  const fakeBody = [
     {
       id: 'OTGZ4R-5DLAK-2LOQCQ',
       opentm: 1613470428.006,
@@ -36,11 +28,13 @@ export function getOrders () {
       type: 'sell'
     }
   ]
+  const scope = nock('http://localhost').get('/api/v1/openOrders').reply(200, fakeBody)
 
-  // return request.get(rootUrl + '/balances')
-  //   .then(res => {
-  //     return res.body
-  //   })
-
-  return Promise.resolve(orders)
-}
+  test('returns body of response', () => {
+    return getOrders().then((orders) => {
+      expect(orders).toEqual(fakeBody)
+      expect(scope.isDone()).toBe(true)
+      return null
+    })
+  })
+})

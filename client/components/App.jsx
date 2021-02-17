@@ -2,12 +2,12 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import OpenOrders from './OpenOrders'
 
-import { fetchFruits } from '../actions'
+// import { fetchFruits } from '../actions'
 
 function App (props) {
-  useEffect(() => {
-    props.dispatch(fetchFruits())
-  }, [])
+  // useEffect(() => {
+  //   props.dispatch(fetchFruits())
+  // }, [])
 
   return (
     <>
