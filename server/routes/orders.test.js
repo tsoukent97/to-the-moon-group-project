@@ -2,8 +2,8 @@ const KrakenClient = require('kraken-api')
 // TODO Change line 3 to point to './orders.js'
 const { openOrders } = require('../ordersAPI')
 
-jest.mock('kraken-api'/* , () => jest.fn() */)
-const fakeKraken = { api: jest.fn(() => Promise.resolve({ result: 'apiResponse' })) }
+jest.mock('kraken-api', () => jest.fn())
+const fakeKraken = { api: jest.fn() }
 KrakenClient.mockImplementation(() => fakeKraken)
 
 describe('openOrders', () => {
@@ -35,7 +35,7 @@ describe('openOrders', () => {
   ]
 
   test('calls OpenOrders', () => {
-    KrakenClient.api.mockImplementation(() => Promise.resolve({ result: apiResponse }))
+    fakeKraken.api.mockImplementation(() => Promise.resolve({ result: apiResponse }))
     // TODO Change to openOrders function call
     return openOrders()
       .then(actual => {
