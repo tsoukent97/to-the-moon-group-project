@@ -43,7 +43,8 @@
     "knex": "^0.21.12",
     "kraken-api": "^1.0.1",
     "pg": "^8.5.1",
-    "superagent": "^6.1.0"
+    "superagent": "^6.1.0",
+    "ws": "^7.4.3"
   },
   "devDependencies": {
     "@babel/core": "7.12.3",
