@@ -31,3 +31,22 @@ The GET /api/v1/orders/open request will send back an object as follows:
   }
 ]
 ```
+
+The GET /api/v1/balance request will send back an object as follows:
+```
+[
+  {
+    token: 'XXBTZUSD',
+    amount: 9.98,
+    amountUsd: '0.00020000',
+    valueUsd: '52000.0',
+  },
+  {
+    token: 'XLTCZUSD',
+    amount: 3.2,
+    amountUsd: '0.00020000',
+    valueUsd: '52000.0',
+  },
+  
+]
+```
