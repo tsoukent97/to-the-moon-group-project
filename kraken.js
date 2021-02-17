@@ -1,3 +1,5 @@
+// should live in server
+
 require('dotenv').config()
 const KrakenClient = require('kraken-api')
 
