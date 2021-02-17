@@ -23,12 +23,14 @@ test('getBalances resolves with balance object', () => {
     })
   })
   getAssetInfo.mockImplementation(() => {
-    return Promise.resolve({
-      token: 'LUKLHD',
-      amount: 48754,
-      priceUsd: 34598,
-      amountUsd: 423024,
-    })
+    return Promise.resolve([
+      {
+        token: 'LUKLHD',
+        amount: 48754,
+        priceUsd: 34598,
+        amountUsd: 423024,
+      },
+    ])
   })
   request(server)
     .get('/api/v1/balance')
