@@ -27,14 +27,17 @@ describe('getAssetInfo', () => {
       return Promise.resolve(ticker)
     })
     return getAssetInfo(mockGetBalance.balance).then(actual => {
-      expect.assertions(1)
-      expect(typeof actual).toEqual('object')
-      expect.arrayContaining({
-        token: String,
-        amount: Number,
-        priceUsd: Number,
-        amountUsd: Number
-      })
+      expect.assertions(2)
+      const firstExpected =
+              {
+                token: 'XXBT',
+                amount: '0.0017530100',
+                usdPrice: '52152.90000',
+                usdValue: 91.424555229
+              }
+      expect(actual[0]).toMatchObject(firstExpected)
+      expect(actual).toHaveLength(3)
+
       return null
     })
   })
