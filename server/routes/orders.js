@@ -11,4 +11,9 @@ router.get('/open', (req, res) => {
     .catch(err => console.log(err))
 })
 
+// this is a mock for testing the addOrder apiClient
+router.post('/add', (req, res) => {
+  return res.json('Success')
+})
+
 module.exports = router

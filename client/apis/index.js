@@ -17,3 +17,12 @@ export function getOrders () {
     })
     .catch(e => console.log(e))
 }
+
+export function addOrder (order) {
+  return request.post(rootUrl + '/orders/add')
+    .send(order)
+    .then(res => {
+      return res.body
+    })
+    .catch(e => console.log(e))
+}
