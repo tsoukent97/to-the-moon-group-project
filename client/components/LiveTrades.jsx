@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 function LiveTrades () {
-  const socket = new WebSocket('wss://ws.kraken.com')
+  const socket = new WebSocket('wss://ws.kraken.com/')
   const [trades, setTrades] = useState([])
 
   useEffect(() => {
@@ -36,17 +36,23 @@ function LiveTrades () {
 
   socket.addEventListener('message', (res) => {
     const result = JSON.parse(res.data)
-    result.length && addNewTrades(result[1])
+    result.length && setTrades((prevTrades) => {
+      const newTrades = [...result[1], ...prevTrades]
+      return newTrades.sort((a, b) => {
+        return a[2] > b[2]
+          ? -1
+          : a[2] < b[2]
+            ? 1
+            : 0
+      }).slice(0, 20)
+    })
   })
-
-  function addNewTrades (newTrades) {
-    setTrades((prevTrades) => [...prevTrades, ...newTrades])
-  }
 
   return (
     <table>
       <thead>
         <tr>
+          <th>Time</th>
           <th>Price</th>
           <th>Volume</th>
           <th>Side</th>
@@ -56,6 +62,7 @@ function LiveTrades () {
       <tbody>
         {trades.map((trade) => {
           return <tr key={trade[2]}>
+            <td>{new Date(trade[2] * 1000).toTimeString().slice(0, 8)}</td>
             <td>{trade[0]}</td>
             <td>{trade[1]}</td>
             <td>{trade[3] === 'b' ? 'Buy' : 'Sell'}</td>
