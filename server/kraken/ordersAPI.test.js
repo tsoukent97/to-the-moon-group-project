@@ -1,6 +1,6 @@
 const KrakenClient = require('kraken-api')
 const { openOrders } = require('./ordersAPI')
-const { mockOpenOrders } = require('./testFixtures/mockOpenOrders')
+const { mockOpenOrders } = require('../testFixtures/mockOpenOrders')
 
 jest.mock('kraken-api', () => jest.fn())
 const fakeKraken = { api: jest.fn() }

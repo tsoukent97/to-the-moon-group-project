@@ -1,5 +1,5 @@
 const express = require('express')
-const { openOrders } = require('../ordersAPI')
+const { openOrders } = require('../kraken/ordersAPI')
 
 const router = express.Router()
 

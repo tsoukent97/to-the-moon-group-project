@@ -1,5 +1,5 @@
-const callKraken = require('../kraken')
-const { dataTransform } = require('./utilities/dataTransform')
+const { callKraken } = require('./kraken')
+const { dataTransform } = require('../utilities/dataTransform')
 
 function openOrders () {
   return callKraken('OpenOrders')

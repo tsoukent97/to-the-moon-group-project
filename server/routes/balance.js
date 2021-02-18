@@ -1,13 +1,13 @@
-const express = require('express')
+const { getBalances, getAssetInfo } = require('../kraken/balances')
 
-const data = [
-  { token: 'BTC', amount: '0.001', usdPrice: '49500.00', usdValue: '495.00' },
-  { token: 'USD', amount: '10', usdPrice: '1', usdValue: '10' }]
+const express = require('express')
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  res.send(data)
+router.get('/', async (req, res) => {
+  const balances = await getBalances()
+  const assetInfo = await getAssetInfo(balances)
+  return res.json(assetInfo)
 })
 
 module.exports = router
