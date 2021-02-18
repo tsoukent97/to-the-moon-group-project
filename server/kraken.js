@@ -1,11 +1,11 @@
 const { mapAssetInfo } = require('./lib')
 const { callKraken } = require('../demo')
 
-function getBalances() {
+function getBalances () {
   return callKraken('Balance')
 }
 
-function getAssetInfo(balance) {
+function getAssetInfo (balance) {
   const tokens = Object.keys(balance.result).slice(1)
   const pairs = tokens.map(token => token + 'ZUSD').join(', ')
   return callKraken('Ticker', { pair: pairs })

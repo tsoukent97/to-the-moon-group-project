@@ -13,7 +13,7 @@ jest.mock('../kraken', () => ({
   getAssetInfo: jest.fn()
 }))
 
-test('test /balance api route', () => {
+test('/balance api route', () => {
   getBalances.mockImplementation(() => {
     return Promise.resolve(mockGetBalance)
   })
@@ -26,5 +26,6 @@ test('test /balance api route', () => {
     .expect(200)
     .then(res => {
       expect(res.body).toEqual(mockGetAssetInfo)
+      return null
     })
 })
