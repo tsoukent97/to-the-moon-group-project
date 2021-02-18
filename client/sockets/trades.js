@@ -50,7 +50,7 @@ export function formatTrades (trades) {
     .map(trade => {
       return {
         id: trade[2],
-        time: new Date(trade[2] * 1000).toLocaleTimeString().slice(0, 8),
+        time: new Date(trade[2] * 1000).toLocaleTimeString('en-NZ').slice(0, 8),
         price: trade[0].slice(0, -3),
         volume: trade[1],
         side: trade[3] === 'b' ? 'buy' : 'sell',
