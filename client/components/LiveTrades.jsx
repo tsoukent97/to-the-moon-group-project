@@ -1,52 +1,28 @@
 import React, { useState, useEffect } from 'react'
 
+import { onNewTrades, closeSocket } from '../apis/tradesWebSocket'
+
 function LiveTrades () {
-  const socket = new WebSocket('wss://ws.kraken.com/')
   const [trades, setTrades] = useState([])
 
   useEffect(() => {
-    socket.addEventListener('open', () => {
-      socket.send(JSON.stringify({
-        event: 'subscribe',
-        pair: [
-          'XBT/USD'
-        ],
-        subscription: {
-          name: 'trade'
-        }
-      }))
-    })
-
-    socket.addEventListener('close', () => {
-      socket.send(JSON.stringify({
-        event: 'unsubscribe',
-        pair: [
-          'XBT/USD'
-        ],
-        subscription: {
-          name: 'trade'
-        }
-      }))
+    onNewTrades((newTrades) => {
+      setTrades((prevTrades) => {
+        const trades = [...newTrades, ...prevTrades]
+        return trades.sort((a, b) => {
+          return a[2] > b[2]
+            ? -1
+            : a[2] < b[2]
+              ? 1
+              : 0
+        }).slice(0, 20)
+      })
     })
 
     return () => {
-      socket.close()
+      closeSocket()
     }
   }, [])
-
-  socket.addEventListener('message', (res) => {
-    const result = JSON.parse(res.data)
-    result.length && setTrades((prevTrades) => {
-      const newTrades = [...result[1], ...prevTrades]
-      return newTrades.sort((a, b) => {
-        return a[2] > b[2]
-          ? -1
-          : a[2] < b[2]
-            ? 1
-            : 0
-      }).slice(0, 20)
-    })
-  })
 
   return (
     <table>
