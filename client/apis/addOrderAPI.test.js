@@ -12,7 +12,13 @@ describe('addOrder', () => {
     // vol: 0.00020000
   }
   // TODO figure out how to get hold of the actual reponse object
-  const testResponseData = 'Success'
+  const testResponseData = {
+    descr: {
+      order: '',
+      close: ''
+    },
+    txid: []
+  }
   const scope = nock('http://localhost')
     .post('/api/v1/orders/add', { testAddOrder })
     .reply(201, testResponseData)
