@@ -1,12 +1,12 @@
 const request = require('supertest')
 const server = require('../server')
-const api = require('../ordersAPI')
+const api = require('../kraken/ordersAPI')
 
 const { mockReturnOpenOrders } = require('../testFixtures/mockOpenOrders')
 
 const baseURL = '/api/v1/orders'
 
-jest.mock('../ordersAPI', () => {
+jest.mock('../kraken/ordersAPI', () => {
   return {
     openOrders: jest.fn()
   }
