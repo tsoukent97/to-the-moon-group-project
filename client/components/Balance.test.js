@@ -23,7 +23,7 @@ test('sadfuydiflu', async () => {
     { token: 'USD', amount: '10', usdPrice: '1', usdValue: '10' }]))
   render(<Balance />)
 
-  await waitFor(() => getBalance.mock.calls.length > 0) // Don't fully understand this <---
+  await waitFor(() => getBalance.mock.calls.length > 0)
 
   const cryptoToken = screen.getAllByRole('cell')
 
