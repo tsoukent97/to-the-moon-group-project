@@ -17,6 +17,7 @@
     "build:client": "npm run webpack -- --mode production",
     "build:server": "npm run knex -- migrate:latest",
     "lint": "eslint --ext .js,.jsx .",
+    "lint:fix": "eslint --ext .js,.jsx . --fix",
     "webpack": "webpack --config ./client/webpack.config.js",
     "knex": "knex --knexfile ./server/db/knexfile.js"
   },
@@ -42,7 +43,8 @@
     "knex": "^0.21.12",
     "kraken-api": "^1.0.1",
     "pg": "^8.5.1",
-    "superagent": "^6.1.0"
+    "superagent": "^6.1.0",
+    "ws": "^7.4.3"
   },
   "devDependencies": {
     "@babel/core": "7.12.3",

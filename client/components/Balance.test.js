@@ -5,54 +5,31 @@ import { getBalance } from '../apis'
 import Balance from './Balance'
 
 jest.mock('../apis')
-
+// First
 test('render a <tr></tr> for each balance item', () => {
-  //mock out getBalance
+  // mock out getBalance
+  getBalance.mockImplementation(() => Promise.resolve([
+    { token: 'BTC', amount: '0.001', usdPrice: '49500.00', usdValue: '495.00' },
+    { token: 'USD', amount: '10', usdPrice: '1', usdValue: '10' }]))
   render(<Balance />)
-  const tr = (screen.getAllByRole('row'))
-  expect(tr).toHaveLength(1)
+  const row = (screen.getAllByRole('rowgroup'))
+  expect(row).toHaveLength(2)
 })
-
-test.only('sadfuydiflu', async () => {
+// Second
+test('sadfuydiflu', async () => {
   getBalance.mockImplementation(() => Promise.resolve([
     { token: 'BTC', amount: '0.001', usdPrice: '49500.00', usdValue: '495.00' },
     { token: 'USD', amount: '10', usdPrice: '1', usdValue: '10' }]))
   render(<Balance />)
 
-  await waitFor(() => getBalance.mock.calls.length > 0)
+  await waitFor(() => getBalance.mock.calls.length > 0) // Don't fully understand this <---
 
-  //try using getAllByRole('gridcell')
-  const cryptoToken = screen.getAllByTestId('testData')
-  //screen.debug()
-  expect(cryptoToken.innerHTML).toEqual(4)
+  // try using getAllByRole('gridcell')
+  const cryptoToken = screen.getAllByRole('cell')
+  // screen.debug()
+  expect(cryptoToken).toHaveLength(12)
+  expect(cryptoToken[0].innerHTML).toEqual('Token')
+  expect(cryptoToken[4].innerHTML).toEqual('BTC')
   const heading = screen.getByRole('heading')
   expect(heading.innerHTML).toEqual('Wallet Balance')
-
 })
-
-// jest.mock('./index', () => {
-//   return { getBalance: jest.fn() }
-// })
-
-// describe('getBalance', () => {
-//   test('is working', () => {
-//     expect.assertions(1)
-//     expect(1).toEqual(1)
-//   })
-
-//   test('receiving data from server side API', () => {
-//     expect.assertions(1)
-//     getBalance.mockImplementation(() => {
-//       return Promise.resolve([
-//         { token: 'BTC', amount: '0.001', usdPrice: '49500.00', usdValue: '495.00' },
-//         { token: 'USD', amount: '10', usdPrice: '1', usdValue: '10' }
-//       ])
-//     })
-//   })
-// })
-
-// test('', () => {
-//   render(<Balance />)
-//   const tr = (screen.getAllByRole('row'))
-//   expect(tr).toHaveLength(1)
-// })
