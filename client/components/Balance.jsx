@@ -13,18 +13,16 @@ function Balance () {
       })
   }, [])
 
-  // console.log(balances)
-
   return (
     <div className='balances'>
       <h1>Wallet Balance</h1>
       <table>
         <thead>
           <tr>
-            <td data-testid='testData'>Token</td>
-            <td data-testid='testData'>Amount</td>
-            <td data-testid='testData'>USD Price</td>
-            <td data-testid='testData'>USD Value</td>
+            <td>Token</td>
+            <td>Amount</td>
+            <td>USD Price</td>
+            <td>USD Value</td>
           </tr>
         </thead>
         <tbody>

@@ -3,8 +3,6 @@ import nock from 'nock'
 import { getBalance } from './index'
 
 describe('getBalance', () => {
-  // fakeData = ['data that looks real']
-  // fakeData = { key: 'whatever i want' }
   const testData = [
     { token: 'BTC', amount: '0.001', usdPrice: '49500.00', usdValue: '495.00' },
     { token: 'USD', amount: '10', usdPrice: '1', usdValue: '10' }
