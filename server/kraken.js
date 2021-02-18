@@ -1,24 +1,14 @@
-require('dotenv').config()
-const KrakenClient = require('kraken-api')
-
 const { mapAssetInfo } = require('./lib')
-
-const key = process.env.KRAKEN_API_KEY
-const secret = process.env.KRAKEN_API_SECRET
-const kraken = new KrakenClient(key, secret)
+const { callKraken } = require('../demo')
 
 function getBalances() {
-  return kraken
-    .api('Balance')
-    .then(balance => balance)
-    .catch(err => console.error(err))
+  return callKraken('Balance')
 }
 
 function getAssetInfo(balance) {
   const tokens = Object.keys(balance.result).slice(1)
   const pairs = tokens.map(token => token + 'ZUSD').join(', ')
-  return kraken
-    .api('Ticker', { pair: pairs })
+  return callKraken('Ticker', { pair: pairs })
     .then(assetInfo =>
       tokens.map(token => mapAssetInfo(token, assetInfo, balance))
     )
