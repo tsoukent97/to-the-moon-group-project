@@ -9,12 +9,22 @@ test('that testing is working', async () => {
   expect(1).toEqual(1)
 })
 
-// test('that button gets rendered', async () => {
+// test('cancel button gets rendered', async () => {
 //   expect.assertions(1)
 //   expect(1).toEqual(1)
 // })
 
-// test('deleting the order', async () => {
+// test('cancelOrder function is called with an id', async () => {
+//   expect.assertions(1)
+//   expect(1).toEqual(1)
+// })
+
+// test('response is received', async () => {
+//   expect.assertions(1)
+//   expect(1).toEqual(1)
+// })
+
+// test('refreshOrderList function is called', async () => {
 //   expect.assertions(1)
 //   expect(1).toEqual(1)
 // })

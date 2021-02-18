@@ -14,6 +14,14 @@ function OpenOrders () {
       })
   }, [])
 
+  function refreshOrderList () {
+    getOrders()
+      .then((orders) => {
+        return setOrders(orders)
+      })
+      .catch((e) => console.log(e))
+  }
+
   return (
     <>
       <h1>Open order list!</h1>
@@ -31,7 +39,7 @@ function OpenOrders () {
               <td>{order.type}</td>
               <td>{order.price}</td>
               <td>{order.vol}</td>
-              <td><CancelOrder order={order} /></td>
+              <td><CancelOrder order={order} refresh={refreshOrderList} /></td>
             </tr>
           )}
         </tbody>
