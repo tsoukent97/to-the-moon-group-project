@@ -9,6 +9,7 @@ function Balance () {
     return getBalance()
       .then(data => {
         setBalances(data)
+        return null
       })
   }, [])
 
