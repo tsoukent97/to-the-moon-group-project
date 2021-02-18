@@ -12,7 +12,7 @@ jest.mock('../ordersAPI', () => {
   }
 })
 
-describe('GET /api/v1/orders', () => {
+describe('GET /api/v1/orders/open', () => {
   it('responds with an open orders array', () => {
     api.openOrders.mockImplementation(() => Promise.resolve(mockReturnOpenOrders))
 
