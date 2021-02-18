@@ -4,13 +4,13 @@ import '@testing-library/jest-dom/extend-expect'
 
 import LiveTrades from './LiveTrades'
 
-import { onNewTrades, closeSocket } from '../apis/tradesWebSocket'
-jest.mock('../apis/tradesWebSocket')
+import { addSocketListeners, closeSocket } from '../sockets/trades'
+jest.mock('../sockets/trades')
 
 // needed to expect closeSocket not to have been called in one test
 beforeEach(() => jest.resetAllMocks())
 
-test('calls onNewTrades and renders correct number of trades on mount', () => {
+test('calls addSocketListeners and renders correct number of trades on mount', () => {
   const newTrades = [{
     id: 123456,
     time: '12:34:56',
@@ -26,7 +26,7 @@ test('calls onNewTrades and renders correct number of trades on mount', () => {
     side: 'buy',
     type: 'limit'
   }]
-  onNewTrades.mockImplementation((cbFunc) => {
+  addSocketListeners.mockImplementation((cbFunc) => {
     cbFunc(newTrades)
   })
   render(<LiveTrades />)
@@ -61,7 +61,7 @@ test('only displays latest 20 trades', () => {
     { id: 20 },
     { id: 21 }
   ]
-  onNewTrades.mockImplementation((cbFunc) => {
+  addSocketListeners.mockImplementation((cbFunc) => {
     cbFunc(newTrades)
   })
   render(<LiveTrades />)
@@ -78,7 +78,7 @@ test('merges current and new trades correctly', () => {
     { id: 3, time: '13:14:18' },
     { id: 4, time: '13:14:17' }
   ]
-  onNewTrades.mockImplementation((cbFunc) => {
+  addSocketListeners.mockImplementation((cbFunc) => {
     cbFunc(firstNewTrades)
     cbFunc(secondNewTrades)
   })

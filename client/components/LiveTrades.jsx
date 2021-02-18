@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
-import { onNewTrades, closeSocket } from '../apis/tradesWebSocket'
+import { addSocketListeners, closeSocket } from '../sockets/trades'
 
 function LiveTrades () {
   const [trades, setTrades] = useState([])
 
   useEffect(() => {
-    onNewTrades((newTrades) => {
+    addSocketListeners((newTrades) => {
       setTrades((prevTrades) => {
         return [...newTrades, ...prevTrades].slice(0, 20)
       })
