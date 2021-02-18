@@ -11,4 +11,20 @@ function openOrders () {
     })
 }
 
-module.exports = { openOrders }
+function cancelOrder (txid) {
+  if (!txid) {
+    const error = new Error('No order id')
+    return Promise.reject(error)
+  }
+
+  return callKraken('CancelOrder', { txid })
+    .then(res => {
+      console.log(res)
+      return null
+    })
+}
+
+module.exports = {
+  openOrders,
+  cancelOrder
+}
