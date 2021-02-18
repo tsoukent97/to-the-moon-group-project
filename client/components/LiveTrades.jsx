@@ -8,14 +8,7 @@ function LiveTrades () {
   useEffect(() => {
     onNewTrades((newTrades) => {
       setTrades((prevTrades) => {
-        const trades = [...newTrades, ...prevTrades]
-        return trades.sort((a, b) => {
-          return a[2] > b[2]
-            ? -1
-            : a[2] < b[2]
-              ? 1
-              : 0
-        }).slice(0, 20)
+        return [...newTrades, ...prevTrades].slice(0, 20)
       })
     })
 
@@ -25,28 +18,32 @@ function LiveTrades () {
   }, [])
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Price</th>
-          <th>Volume</th>
-          <th>Side</th>
-          <th>Type</th>
-        </tr>
-      </thead>
-      <tbody>
-        {trades.map((trade) => {
-          return <tr key={trade[2]}>
-            <td>{new Date(trade[2] * 1000).toTimeString().slice(0, 8)}</td>
-            <td>{trade[0]}</td>
-            <td>{trade[1]}</td>
-            <td>{trade[3] === 'b' ? 'Buy' : 'Sell'}</td>
-            <td>{trade[4] === 'l' ? 'Limit' : 'Market'}</td>
+    <>
+      <h1>Live Trades!</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Price</th>
+            <th>Volume</th>
+            <th>Side</th>
+            <th>Type</th>
           </tr>
-        })}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {trades.map((trade) => {
+            const { id, time, price, volume, side, type } = trade
+            return <tr key={id}>
+              <td>{time}</td>
+              <td>{price}</td>
+              <td>{volume}</td>
+              <td className={side}>{side}</td>
+              <td>{type}</td>
+            </tr>
+          })}
+        </tbody>
+      </table>
+    </>
   )
 }
 
