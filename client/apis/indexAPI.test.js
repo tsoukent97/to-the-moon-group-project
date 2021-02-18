@@ -28,7 +28,7 @@ describe('getOrders', () => {
       type: 'sell'
     }
   ]
-  const scope = nock('http://localhost').get('/api/v1/openOrders').reply(200, fakeBody)
+  const scope = nock('http://localhost').get('/api/v1/orders/open').reply(200, fakeBody)
 
   test('returns body of response', () => {
     return getOrders()
