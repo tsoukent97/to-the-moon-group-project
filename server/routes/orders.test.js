@@ -2,7 +2,7 @@ const request = require('supertest')
 const server = require('../server')
 const api = require('../ordersAPI')
 
-const { mockReturnOpenOrders } = require('../utilities/mockOpenOrders')
+const { mockReturnOpenOrders } = require('../testFixtures/mockOpenOrders')
 
 const baseURL = '/api/v1/orders'
 
@@ -21,7 +21,7 @@ describe('GET /api/v1/orders', () => {
       .expect(200)
       .then(res => {
         expect(typeof res.body).toEqual('object')
-        expect(res.body).toHaveLength(3)
+        expect(res.body).toEqual(mockReturnOpenOrders)
         return null
       })
   })

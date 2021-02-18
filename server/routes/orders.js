@@ -1,5 +1,4 @@
 const express = require('express')
-// const request = require('superagent')
 const { openOrders } = require('../ordersAPI')
 
 const router = express.Router()
