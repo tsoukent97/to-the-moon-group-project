@@ -9,7 +9,7 @@ function OpenOrders () {
     return getOrders()
       .then(orders => {
         setOrders(orders)
-        throw new Error('this is an error')
+        return null
       })
   }, [])
 

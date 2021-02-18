@@ -31,10 +31,11 @@ describe('getOrders', () => {
   const scope = nock('http://localhost').get('/api/v1/openOrders').reply(200, fakeBody)
 
   test('returns body of response', () => {
-    return getOrders().then((orders) => {
-      expect(orders).toEqual(fakeBody)
-      expect(scope.isDone()).toBe(true)
-      return null
-    })
+    return getOrders()
+      .then((orders) => {
+        expect(orders).toEqual(fakeBody)
+        expect(scope.isDone()).toBe(true)
+        return null
+      })
   })
 })

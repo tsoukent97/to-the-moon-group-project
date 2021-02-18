@@ -1,10 +1,35 @@
 import React from 'react'
-import { screen, render } from '@testing-library/react'
+import { screen, render, waitFor } from '@testing-library/react'
 
 import OpenOrders from './OpenOrders'
+import { getOrders } from '../apis'
 
-test('render a <tr></tr> for each order item', () => {
+jest.mock('../apis')
+test('render a <tr></tr> for each openOrders item', async () => {
+  getOrders.mockImplementation(() => {
+    return Promise.resolve([
+      {
+        id: 'OTGZ4R-5DLAK-2LOQCQ',
+        opentm: 1613470428.006,
+        vol: '0.00020000',
+        price: '52000.0',
+        pair: 'XBTUSD',
+        type: 'sell'
+      },
+      {
+        id: 'O7ZXP3-MXHKG-4NWUHE',
+        opentm: 1613470176.8885,
+        vol: '0.00020000',
+        price: '65000.0',
+        pair: 'XBTUSD',
+        type: 'sell'
+      }
+    ])
+  })
   render(<OpenOrders/>)
-  const tr = (screen.getAllByRole('row'))
-  expect(tr).toHaveLength(4)
+  await waitFor(() => {
+    return getOrders.mock.calls.length > 0
+  })
+  const row = (screen.getAllByRole('row'))
+  expect(row).toHaveLength(3)
 })
