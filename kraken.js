@@ -3,7 +3,17 @@ const KrakenClient = require('kraken-api')
 
 const key = process.env.KRAKEN_API_KEY
 const secret = process.env.KRAKEN_API_SECRET
-const kraken = new KrakenClient(key, secret)
+
+module.exports = callKraken
+
+function callKraken (method, params) {
+  const kraken = new KrakenClient(key, secret)
+  return kraken.api(method, params)
+    .then(res => res)
+    .catch(e => {
+      throw e
+    })
+}
 
 // https://www.kraken.com/features/api
 
@@ -14,12 +24,3 @@ const kraken = new KrakenClient(key, secret)
 // OpenOrders
 // CancelOrder
 // AddOrder
-
-kraken.api('Ticker', { pair: 'XXBTZUSD, XLTCZUSD' })
-  .then(res => {
-    console.log(res.result)
-    return null
-  })
-  .catch(e => {
-    console.log(e)
-  })
