@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node server",
     "test": "jest --verbose --coverage",
-    "test:watch": "jest --noStackTrace --watchAll --coverage",
+    "test:watch": "jest --watchAll --coverage",
     "dev": "run-p dev:client dev:server",
     "dev:client": "npm run webpack -- --watch",
     "dev:server": "nodemon --watch server server/index.js",
@@ -42,8 +42,10 @@
     "express": "^4.17.1",
     "knex": "^0.21.12",
     "kraken-api": "^1.0.1",
+    "nock": "^13.0.7",
     "pg": "^8.5.1",
-    "superagent": "^6.1.0"
+    "superagent": "^6.1.0",
+    "ws": "^7.4.3"
   },
   "devDependencies": {
     "@babel/core": "7.12.3",

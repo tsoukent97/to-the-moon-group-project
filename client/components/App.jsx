@@ -1,30 +1,17 @@
-import React, { useEffect } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 
-import { fetchFruits } from '../actions'
+import Balance from './Balance.jsx'
+import OpenOrders from './OpenOrders'
 
 function App (props) {
-  useEffect(() => {
-    props.dispatch(fetchFruits())
-  }, [])
-
   return (
     <>
       <div className='app'>
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
-        <ul>
-          {props.fruits.map(fruit => (
-            <li key={fruit}>{fruit}</li>
-          ))}
-        </ul>
+        <Balance />
+        <OpenOrders />
       </div>
     </>
   )
 }
-const mapStateToProps = (globalState) => {
-  return {
-    fruits: globalState.fruits
-  }
-}
 
-export default connect(mapStateToProps)(App)
+export default App

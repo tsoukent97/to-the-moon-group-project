@@ -1,4 +1,4 @@
-const { getBalances, getAssetInfo } = require('../kraken')
+const { getBalances, getAssetInfo } = require('../kraken/balances')
 
 const express = require('express')
 

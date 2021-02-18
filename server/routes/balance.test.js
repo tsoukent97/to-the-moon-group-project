@@ -1,14 +1,14 @@
 const request = require('supertest')
 const server = require('../server')
 
-const { getBalances, getAssetInfo } = require('../kraken.js')
+const { getBalances, getAssetInfo } = require('../kraken/balances')
 
 const {
   mockGetBalance,
   mockGetAssetInfo
 } = require('../testFixtures/mockGetBalance')
 
-jest.mock('../kraken', () => ({
+jest.mock('../kraken/balances', () => ({
   getBalances: jest.fn(),
   getAssetInfo: jest.fn()
 }))

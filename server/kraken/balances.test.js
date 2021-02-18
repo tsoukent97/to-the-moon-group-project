@@ -1,7 +1,7 @@
 const KrakenClient = require('kraken-api')
-const { getBalances, getAssetInfo } = require('./kraken')
+const { getBalances, getAssetInfo } = require('./balances')
 
-const { mockGetBalance, ticker } = require('./testFixtures/mockGetBalance')
+const { mockGetBalance, ticker } = require('../testFixtures/mockGetBalance')
 
 jest.mock('kraken-api', () => jest.fn())
 const fakeKraken = { api: jest.fn() }
