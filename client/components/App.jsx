@@ -1,22 +1,19 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
+import OpenOrders from './OpenOrders'
 
-import { fetchFruits } from '../actions'
+// import { fetchFruits } from '../actions'
 
 function App (props) {
-  useEffect(() => {
-    props.dispatch(fetchFruits())
-  }, [])
+  // useEffect(() => {
+  //   props.dispatch(fetchFruits())
+  // }, [])
 
   return (
     <>
       <div className='app'>
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
-        <ul>
-          {props.fruits.map(fruit => (
-            <li key={fruit}>{fruit}</li>
-          ))}
-        </ul>
+        {/* <Balance /> */}
+        <OpenOrders />
       </div>
     </>
   )
