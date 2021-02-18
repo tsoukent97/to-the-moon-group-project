@@ -17,3 +17,11 @@ export function getOrders () {
     })
     .catch(e => console.log(e))
 }
+
+export function cancelOrder (id) {
+  console.log(id)
+  return request.post(rootUrl + `/orders/cancel/${id}`)
+    .send(id)
+    .then((res) => res.body)
+    .catch(e => console.log(e))
+}

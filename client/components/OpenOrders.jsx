@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { getOrders } from '../apis'
+import CancelOrder from './CancelOrder'
 
 function OpenOrders () {
   const [orders, setOrders] = useState([])
@@ -30,6 +31,7 @@ function OpenOrders () {
               <td>{order.type}</td>
               <td>{order.price}</td>
               <td>{order.vol}</td>
+              <td><CancelOrder order={order} /></td>
             </tr>
           )}
         </tbody>
