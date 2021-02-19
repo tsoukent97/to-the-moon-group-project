@@ -2,9 +2,9 @@ const { callKraken } = require('../server/kraken/kraken')
 
 callKraken('AddOrder', {
   pair: 'XXBTZUSD',
-  type: 'buy',
+  type: 'sell',
   ordertype: 'limit',
-  price: '49000',
+  price: '55000',
   volume: '0.0002'
 })
   .then(res => {
