@@ -34,7 +34,6 @@ router.post('/add', (req, res) => {
   function priceUpdated () {
     addOrder(pair, type, price)
       .then((results) => {
-        console.log('Order : ' + JSON.stringify(results))
         res.send(results)
         return null
       }).catch(e => console.log(e))
