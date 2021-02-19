@@ -19,8 +19,8 @@ function cancelOrder (txid) {
 
   return callKraken('CancelOrder', { txid })
     .then(res => {
-      console.log(res)
-      return null
+      console.log(typeof res.result.count)
+      return res
     })
 }
 

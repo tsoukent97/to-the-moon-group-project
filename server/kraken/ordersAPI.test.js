@@ -1,6 +1,8 @@
 const KrakenClient = require('kraken-api')
-const { openOrders } = require('./ordersAPI')
+const { openOrders, cancelOrder } = require('./ordersAPI')
 const { mockOpenOrders } = require('../testFixtures/mockOpenOrders')
+
+// { error: [], result: { count: 1 } }
 
 jest.mock('kraken-api', () => jest.fn())
 const fakeKraken = { api: jest.fn() }
@@ -30,3 +32,19 @@ describe('openOrders', () => {
       })
   })
 })
+
+describe('cancelOrder', () => {
+  const fakeResponse = { error: [], result: { count: 1 } }
+  const fakeResResult = { count: 1 }
+  test('calls cancelOrder with txid', () => {
+    fakeKraken.api.mockImplementation(() => Promise.resolve(fakeResponse))
+    return cancelOrder('abc123')
+      .then(res => {
+        expect.assertions(4)
+        expect(typeof res).toEqual('object')
+        expect(res).toEqual(fakeResponse)
+        expect(res.result).toEqual(fakeResResult)
+        expect(res.result.count).toEqual(1)
+        return null
+      })
+  })
