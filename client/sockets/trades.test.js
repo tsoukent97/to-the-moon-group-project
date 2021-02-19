@@ -86,7 +86,7 @@ describe('formatTrades', () => {
     ]
     const [formattedTrade] = formatTrades(trades)
     expect(formattedTrade.id).toMatch('161363')
-    expect(formattedTrade.time).toBe('21:00:08')
+    expect(formattedTrade.time).toBe('9:00:08')
     expect(formattedTrade.price).toBe('52000.80')
     expect(formattedTrade.volume).toMatch('0.10')
     expect(formattedTrade.side).toMatch('buy')
