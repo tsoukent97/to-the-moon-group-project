@@ -52,7 +52,6 @@ describe('POST /api/v1/orders/add', () => {
         order: order
       })
       .then(res => {
-        console.log(res)
         expect(typeof res.body).toEqual('object')
         expect(res.body).toEqual(fakeAddOrderResult)
       })

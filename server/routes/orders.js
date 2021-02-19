@@ -25,8 +25,8 @@ router.post('/add', (req, res) => {
   addOrder(pair, type, price)
     .then((results) => {
       console.log('Order : '+ JSON.stringify(results))
-      return results
-    })
+      res.send(results)
+    }).catch(e=>console.log(e))
 })
 
 module.exports = router
