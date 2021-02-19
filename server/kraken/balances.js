@@ -5,8 +5,9 @@ function getBalances () {
 }
 
 function getAssetInfo (balance) {
-  const tokens = Object.keys(balance.result).slice(1)
-  const pairs = tokens.map(token => token + 'ZUSD').join(', ')
+  const tokens = Object.keys(balance.result)
+  const tokensForPairs = tokens.filter(token => token !== 'ZUSD')
+  const pairs = tokensForPairs.map(token => token + 'ZUSD').join(', ')
   return callKraken('Ticker', { pair: pairs })
     .then(assetInfo =>
       tokens.map(token => mapAssetInfo(token, assetInfo, balance))
@@ -16,7 +17,7 @@ function getAssetInfo (balance) {
 
 function mapAssetInfo (token, assetInfo, balance) {
   const amount = balance.result[token]
-  const usdPrice = assetInfo.result[token + 'ZUSD'].c[0]
+  const usdPrice = token === 'ZUSD' ? 1 : assetInfo.result[token + 'ZUSD'].c[0]
   return {
     token,
     amount,
