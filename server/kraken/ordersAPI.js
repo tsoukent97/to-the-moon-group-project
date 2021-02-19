@@ -18,9 +18,9 @@ function addOrder (pair, price, type) {
     ordertype: 'limit',
     price: price,
     volume: '0.0002'
-  }).then((result)=>{
+  }).then((result) => {
     return result
-  }).catch(e=>console.log(e))
+  }).catch(e => console.log(e))
 }
 
 module.exports = { openOrders, addOrder }

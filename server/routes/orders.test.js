@@ -8,15 +8,15 @@ const baseURL = '/api/v1/orders'
 
 const order = {
   pair: 'XXBTZUSD',
-  type: 'buy',
-  price: '40000'
+  type: 'sell',
+  price: '60000.8'
 }
 
 const fakeAddOrderResult = {
   error: [],
   result: {
     descr: { order: 'buy 0.00020000 XBTUSD @ limit 40000.00' },
-    txid: [ 'O45ABF-MSNRZ-QGT4EZ' ]
+    txid: ['O45ABF-MSNRZ-QGT4EZ']
   }
 }
 
@@ -54,7 +54,7 @@ describe('POST /api/v1/orders/add', () => {
       .then(res => {
         expect(typeof res.body).toEqual('object')
         expect(res.body).toEqual(fakeAddOrderResult)
+        return null
       })
   })
 })
-
