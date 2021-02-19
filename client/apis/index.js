@@ -19,9 +19,13 @@ export function getOrders () {
 }
 
 export function cancelOrder (id) {
-  console.log(id)
   return request.post(rootUrl + `/orders/cancel/${id}`)
-    .send(id)
-    .then((response) => response.body)
-    .catch(e => console.log(e))
+    .then((res) => {
+      if (res.status === 200) {
+        return null
+      } else {
+        throw new Error(res.text)
+      }
+    })
+    .catch(e => { throw new Error(e.response.text) })
 }
