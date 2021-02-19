@@ -15,7 +15,7 @@ router.post('/cancel/:txid', (req, res) => {
   const { txid } = req.params
   cancelOrder(txid)
     .then(() => res.sendStatus(200))
-    .catch(() => res.sendStatus(500))
+    .catch((err) => res.status(500).send(err.message))
 })
 
 module.exports = router

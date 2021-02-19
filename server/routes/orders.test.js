@@ -30,8 +30,6 @@ describe('GET /api/v1/orders/open', () => {
 
 describe('POST /api/v1/orders/cancel/:txid', () => {
   test('return 200 if cancel happens', () => {
-    // const fakeData = { error: [], result: { count: 1 } }
-    // const fakeTxid = '123abc'
     api.cancelOrder.mockImplementation(() => Promise.resolve())
 
     return request(server)
@@ -51,7 +49,7 @@ describe('POST /api/v1/orders/cancel/:txid', () => {
       .post(baseURL + '/cancel/123abc')
       .then(res => {
         expect(res.status).toBe(500)
-        // expect(res.text).toBe('reasons')
+        expect(res.text).toBe('reasons')
         expect(api.cancelOrder).toHaveBeenCalledWith('123abc')
         return null
       })
