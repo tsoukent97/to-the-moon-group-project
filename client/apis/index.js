@@ -29,3 +29,12 @@ export function cancelOrder (id) {
     })
     .catch(e => { throw new Error(e.response.text) })
 }
+
+export function addOrder (order) {
+  return request.post(rootUrl + '/orders/add')
+    .send(order)
+    .then(res => {
+      if (res.status !== 201) throw new Error(res.text)
+      return null
+    })
+}

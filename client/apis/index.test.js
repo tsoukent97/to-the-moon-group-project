@@ -61,7 +61,6 @@ describe('cancelOrder - failed', () => {
         return null
       })
       .catch((e) => {
-        console.log(e)
         expect(e.message).toEqual('Doh, it failed')
         expect(scope.isDone()).toBe(true)
         return null
