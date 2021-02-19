@@ -22,7 +22,7 @@ export function addOrder (order) {
   return request.post(rootUrl + '/orders/add')
     .send(order)
     .then(res => {
-      return res.body
+      if (res.status !== 201) throw new Error(res.text)
+      return null
     })
-    .catch(e => console.log(e))
 }
