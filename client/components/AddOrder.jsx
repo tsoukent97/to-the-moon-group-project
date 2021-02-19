@@ -5,7 +5,7 @@ import { addOrder } from '../apis/index'
 const AddOrder = () => {
   const [order, setOrder] = useState({
     pair: 'XXBTZUSD',
-    price: '50',
+    price: '45000',
     type: 'Buy'
   })
 
@@ -21,28 +21,31 @@ const AddOrder = () => {
 
   return (
     <div>
+      <h1>Place an order</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="pair">Select Pair</label>
-        <select name="pair" id="pair" onChange={handleChange}>
+        <label htmlFor="pair">Select Pair</label><br/>
+        <select name="pair" data-testid="pair" onChange={handleChange}>
           <option value="XXBTZUSD">XXBTZUSD</option>
           <option value="XLTCZUSD">XLTCZUSD</option>
           <option value="XETHZUSD">XETHZUSD</option>
-        </select>
-        <label htmlFor="price"></label>
+        </select><br/><br/>
+        <label htmlFor="price"></label>Price<br/>
         <input
           onChange={handleChange}
           type="range"
           id="price"
           name="price"
-          min="0"
-          max=""
+          min="45000"
+          max="55000"
           value={order.price}
-        />
-        <label htmlFor="type">Buy/Sell</label>
+        /><br/>
+        <input type="text" id="textInput" value={order.price}/><br/><br/>
+        <label htmlFor="type">Buy/Sell</label><br/>
         <select name="type" id="type" onChange={handleChange}>
           <option value="Buy">Buy</option>
           <option value="Sell">Sell</option>
-        </select>
+        </select><br/><br/>
+        <button type="submit">Place Order</button>
       </form>
     </div>
   )
