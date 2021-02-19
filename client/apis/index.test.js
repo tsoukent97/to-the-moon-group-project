@@ -1,6 +1,6 @@
 import nock from 'nock'
 
-import { getBalance } from './index'
+import { getBalance, cancelOrder } from './index'
 
 describe('getBalance', () => {
   const testData = [
@@ -21,6 +21,26 @@ describe('getBalance', () => {
     return getBalance()
       .then(newData => {
         expect(newData).toEqual(testData)
+        expect(scope.isDone()).toBe(true)
+        return null
+      })
+  })
+})
+
+describe('cancelOrder', () => {
+  const testId = 'OTYWJ7-2X5J7-WO2NSU'
+
+  const scope = nock('http://localhost')
+    .post(`/api/v1/orders/cancel/${testId}`)
+    .send(testId)
+    .reply(200)
+
+  test('receiving data from server side API', () => {
+    expect.assertions(2)
+
+    return cancelOrder()
+      .then(response => {
+        expect(response).toEqual(200)
         expect(scope.isDone()).toBe(true)
         return null
       })

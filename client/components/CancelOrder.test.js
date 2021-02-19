@@ -11,16 +11,22 @@ test('that testing is working', async () => {
   expect(1).toEqual(1)
 })
 
-test('cancel button gets rendered', async () => {
-  cancelOrder().mockimplementation(() => {
+// test('cancel button gets rendered', async () => {
+//   cancelOrder().mockimplementation(() => {
+
+//   })
+// })
+
+test('cancelOrder function is called with an id', async () => {
+  expect.assertions(1)
+  cancelOrder.mockimplementation(() => Promise.resolve()
+
+  await waitFor(() => cancelOrder.mock.calls.length > 0)
+
+  //expect...
 
   })
 })
-
-// test('cancelOrder function is called with an id', async () => {
-//   expect.assertions(1)
-//   expect(1).toEqual(1)
-// })
 
 // test('response is received', async () => {
 //   expect.assertions(1)

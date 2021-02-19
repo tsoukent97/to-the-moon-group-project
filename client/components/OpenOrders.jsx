@@ -7,11 +7,7 @@ function OpenOrders () {
   const [orders, setOrders] = useState([])
 
   useEffect(() => {
-    return getOrders()
-      .then(orders => {
-        setOrders(orders)
-        return null
-      })
+    return refreshOrderList()
   }, [])
 
   function refreshOrderList () {
