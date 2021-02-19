@@ -16,12 +16,12 @@ function getAssetInfo (balance) {
 
 function mapAssetInfo (token, assetInfo, balance) {
   const amount = balance.result[token]
-  const priceUsd = assetInfo.result[token + 'ZUSD'].c[0]
+  const usdPrice = assetInfo.result[token + 'ZUSD'].c[0]
   return {
     token,
     amount,
-    priceUsd,
-    amountUsd: amount * priceUsd
+    usdPrice,
+    usdValue: amount * usdPrice
   }
 }
 
