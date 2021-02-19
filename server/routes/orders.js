@@ -1,5 +1,5 @@
 const express = require('express')
-const { openOrders } = require('../kraken/ordersAPI')
+const { openOrders, cancelOrder } = require('../kraken/ordersAPI')
 
 const router = express.Router()
 
@@ -14,6 +14,13 @@ router.get('/open', (req, res) => {
 // this is a mock for testing the addOrder apiClient
 router.post('/add', (req, res) => {
   return res.json('Success')
+})
+
+router.post('/cancel/:txid', (req, res) => {
+  const { txid } = req.params
+  cancelOrder(txid)
+    .then(() => res.sendStatus(200))
+    .catch((err) => res.status(500).send(err.message))
 })
 
 module.exports = router

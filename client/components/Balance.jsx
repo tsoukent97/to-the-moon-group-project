@@ -13,9 +13,14 @@ function Balance () {
       })
   }, [])
 
+  const total = balances.reduce((total, balance) => (
+    total + Number(balance.usdValue)
+  ), 0)
+
   return (
     <div className='balances'>
       <h1>Wallet Balance</h1>
+      You have {total.toFixed(2)} USD.
       <table>
         <thead>
           <tr>
@@ -30,8 +35,8 @@ function Balance () {
             <tr key={balance.token}>
               <td>{balance.token}</td>
               <td>{balance.amount}</td>
-              <td>{balance.usdPrice}</td>
-              <td>{balance.usdValue}</td>
+              <td>{Number(balance.usdPrice).toFixed(2)}</td>
+              <td>{Number(balance.usdValue).toFixed(2)}</td>
             </tr>
           ))}
         </tbody>

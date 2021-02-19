@@ -16,9 +16,4 @@ describe('<AddOrder/>', () => {
     const pair = screen.getByTestId('pair')
     expect(pair.value).toEqual(mockOrder.pair)
   })
-
-  // test('addOrder is called with the correct data input', () => {
-  //   render(<AddOrder />)
-
-  // })
 })
