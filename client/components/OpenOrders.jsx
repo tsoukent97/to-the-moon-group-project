@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react'
 
 import { getOrders } from '../apis'
+import CancelOrder from './CancelOrder'
 
 function OpenOrders () {
   const [orders, setOrders] = useState([])
 
   useEffect(() => {
-    return getOrders()
-      .then(orders => {
-        setOrders(orders)
-        return null
-      })
+    return refreshOrderList()
   }, [])
+
+  function refreshOrderList () {
+    getOrders()
+      .then((orders) => {
+        return setOrders(orders)
+      })
+      .catch((e) => console.log(e))
+  }
 
   return (
     <>
@@ -30,6 +35,7 @@ function OpenOrders () {
               <td>{order.type}</td>
               <td>{order.price}</td>
               <td>{order.vol}</td>
+              <td><CancelOrder order={order} refresh={refreshOrderList} /></td>
             </tr>
           )}
         </tbody>

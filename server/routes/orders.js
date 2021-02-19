@@ -1,5 +1,5 @@
 const express = require('express')
-const { openOrders, addOrder } = require('../kraken/ordersAPI')
+const { openOrders, cancelOrder, addOrder } = require('../kraken/ordersAPI')
 const { callKraken } = require('../kraken/kraken')
 
 const router = express.Router()
@@ -39,6 +39,18 @@ router.post('/add', (req, res) => {
         return null
       }).catch(e => console.log(e))
   }
+})
+
+// this is a mock for testing the addOrder apiClient
+router.post('/add', (req, res) => {
+  return res.json('Success')
+})
+
+router.post('/cancel/:txid', (req, res) => {
+  const { txid } = req.params
+  cancelOrder(txid)
+    .then(() => res.sendStatus(200))
+    .catch((err) => res.status(500).send(err.message))
 })
 
 module.exports = router

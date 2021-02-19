@@ -23,7 +23,8 @@ const fakeAddOrderResult = {
 jest.mock('../kraken/ordersAPI', () => {
   return {
     openOrders: jest.fn(),
-    addOrder: jest.fn()
+    addOrder: jest.fn(),
+    cancelOrder: jest.fn()
   }
 })
 
@@ -54,6 +55,34 @@ describe('POST /api/v1/orders/add', () => {
       .then(res => {
         expect(typeof res.body).toEqual('object')
         expect(res.body).toEqual(fakeAddOrderResult)
+        return null
+      })
+  })
+})
+
+describe('POST /api/v1/orders/cancel/:txid', () => {
+  test('return 200 if cancel happens', () => {
+    api.cancelOrder.mockImplementation(() => Promise.resolve())
+
+    return request(server)
+      .post(baseURL + '/cancel/123abc')
+      .then(res => {
+        expect(res.status).toEqual(200)
+        expect(api.cancelOrder).toHaveBeenCalledWith('123abc')
+        return null
+      })
+  })
+
+  test('return 500 if cancel blows up', () => {
+    const err = new Error('reasons')
+    api.cancelOrder.mockImplementation(() => Promise.reject(err))
+
+    return request(server)
+      .post(baseURL + '/cancel/123abc')
+      .then(res => {
+        expect(res.status).toBe(500)
+        expect(res.text).toBe('reasons')
+        expect(api.cancelOrder).toHaveBeenCalledWith('123abc')
         return null
       })
   })

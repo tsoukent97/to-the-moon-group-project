@@ -23,4 +23,20 @@ function addOrder (pair, price, type) {
   }).catch(e => console.log(e))
 }
 
-module.exports = { openOrders, addOrder }
+function cancelOrder (txid) {
+  if (!txid) {
+    const error = new Error('No order id')
+    return Promise.reject(error)
+  }
+
+  return callKraken('CancelOrder', { txid })
+    .then(res => {
+      return res
+    })
+}
+
+module.exports = {
+  openOrders,
+  cancelOrder,
+  addOrder
+}
