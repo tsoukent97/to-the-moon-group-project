@@ -11,6 +11,7 @@ const AddOrder = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
+    console.log(order)
     addOrder(order)
   }
 
@@ -39,11 +40,11 @@ const AddOrder = () => {
           max="55000"
           value={order.price}
         /><br/>
-        <input type="text" id="textInput" value={order.price}/><br/><br/>
+        <input type="text" id="textInput" value={order.price} onChange={handleChange}/><br/><br/>
         <label htmlFor="type">Buy/Sell</label><br/>
         <select name="type" id="type" onChange={handleChange}>
-          <option value="Buy">Buy</option>
-          <option value="Sell">Sell</option>
+          <option value="buy">Buy</option>
+          <option value="sell">Sell</option>
         </select><br/><br/>
         <button type="submit">Place Order</button>
       </form>

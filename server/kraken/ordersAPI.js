@@ -20,7 +20,10 @@ function addOrder (pair, price, type) {
     volume: '0.0002'
   }).then((result) => {
     return result
-  }).catch(e => console.log(e))
+  }).catch(e => {
+    console.log(pair, price, type)
+    console.log(e)
+  })
 }
 
 function cancelOrder (txid) {

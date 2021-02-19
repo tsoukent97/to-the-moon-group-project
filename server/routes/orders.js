@@ -13,15 +13,16 @@ router.get('/open', (req, res) => {
 })
 
 router.post('/add', (req, res) => {
-  const { pair, type, price } = req.body.order
+  let { pair, type, price } = req.body.order
+  type = type.toLowerCase()
   if (typeof pair === 'string' && typeof type === 'string' && typeof price === 'string') {
     callKraken('Ticker', { pair: pair }).then((data) => {
-      const currentPrice = data.result[pair].c[0]
-
+      const currentPrice = Number(data.result[pair].c[0])
+      console.log(type, Number(price), currentPrice * 1.01)
       if (type === 'sell' && (Number(price) > (currentPrice * 1.01))) {
-        priceUpdated()
+        priceUpdated(res)
       } else if (type === 'buy' && (Number(price) < (currentPrice * 0.99))) {
-        priceUpdated()
+        priceUpdated(res)
       } else {
         res.send('Your order price was too close to last trade price (+/-1%)')
       }
@@ -31,8 +32,8 @@ router.post('/add', (req, res) => {
     res.send('Error: Invalid Input Type')
   }
 
-  function priceUpdated () {
-    addOrder(pair, type, price)
+  function priceUpdated (res) {
+    addOrder(pair, price, type)
       .then((results) => {
         res.send(results)
         return null
