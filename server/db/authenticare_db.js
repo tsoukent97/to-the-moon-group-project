@@ -18,7 +18,9 @@ function userExists (username, db = connection) {
 }
 
 function getUserByName (username, db = connection) {
+  console.log(db, 'line21')
   return db('users').select()
     .where('username', username)
     .first()
 }
+

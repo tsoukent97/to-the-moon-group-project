@@ -37,13 +37,14 @@ function SignIn (props) {
     <>
       <h1>Sign In</h1>
       <form>
-        <label htmlFor='username'>Username </label>
+        <label htmlFor='username'>Username: </label>
         <input type='text'
           id='username'
+          name='username'
           value={form.username}
           onChange={handleChange} />
 
-        <label htmlFor='password'> Password </label>
+        <label htmlFor='password'> Password: </label>
         <input type='password'
           id='password'
           name='password'
