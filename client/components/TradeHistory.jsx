@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from 'react'
-// import { getHistory } from '../apis'
+import { getTrades } from '../apis'
 
 function TradeHistory () {
-  const [trades, setTrades] = useState([])
+  const [trades, setTrades] = useState([{
+    id: '',
+    pair: '',
+    time: '',
+    type: '',
+    ordertype: '',
+    price: '',
+    fee: '',
+    volume: ''
+  }])
 
   useEffect(() => {
     return refreshTradeHistory()
   }, [])
 
   function refreshTradeHistory () {
-    getHistory()
+    console.log('refreshTradeHistory')
+    getTrades()
       .then((trades) => {
+        console.log('trades')
         return setTrades(trades)
       })
       .catch((e) => console.log(e))
@@ -33,8 +44,18 @@ function TradeHistory () {
           </tr>
         </thead>
         <tbody>
-          {/* trades map () => {
-          } */}
+          {trades.map(trade =>
+            <tr key={trade.id}>
+              <td>{trade.id}</td>
+              <td>{trade.pair}</td>
+              <td>{trade.time}</td>
+              <td>{trade.type}</td>
+              <td>{trade.ordertype}</td>
+              <td>{trade.price}</td>
+              <td>{trade.fee}</td>
+              <td>{trade.volume}</td>
+            </tr>
+          )}
         </tbody>
       </table>
     </>
