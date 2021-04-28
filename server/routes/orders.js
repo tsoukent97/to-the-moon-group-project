@@ -18,7 +18,7 @@ router.post('/add', (req, res) => {
   if (typeof pair === 'string' && typeof type === 'string' && typeof price === 'string') {
     callKraken('Ticker', { pair: pair }).then((data) => {
       const currentPrice = Number(data.result[pair].c[0])
-      
+
       if (type === 'sell' && (Number(price) > (currentPrice * 1.01))) {
         priceUpdated()
       } else if (type === 'buy' && (Number(price) < (currentPrice * 0.99))) {

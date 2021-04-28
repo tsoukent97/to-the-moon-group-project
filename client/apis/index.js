@@ -32,7 +32,7 @@ export function cancelOrder (id) {
 
 export function addOrder (order) {
   return request.post(rootUrl + '/orders/add')
-    .send({order})
+    .send({ order })
     .then(res => {
       if (res.status !== 201) throw new Error(res.text)
       return null
