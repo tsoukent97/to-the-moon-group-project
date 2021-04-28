@@ -5,9 +5,11 @@ import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 function Nav () {
   return (
+
     <div>
+      <Link to='/'>Home </Link>
       <IfNotAuthenticated>
-        <Link to='/signin'>Sign In</Link>
+        <Link to='/signin'> Sign In </Link>
       </IfNotAuthenticated>
       <IfAuthenticated>
         <Link to='/'>Log Off</Link>
