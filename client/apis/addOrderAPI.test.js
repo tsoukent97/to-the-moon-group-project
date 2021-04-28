@@ -13,7 +13,7 @@ describe('addOrder', () => {
 
   describe('when happy', () => {
     const scopeSuccess = nock('http://localhost')
-      .post('/api/v1/orders/add', testAddOrder)
+      .post('/api/v1/orders/add', {order: testAddOrder})
       .reply(201)
 
     test('posts new order', () => {
@@ -30,7 +30,7 @@ describe('addOrder', () => {
 
   describe('api call fails', () => {
     const scopeFail = nock('http://localhost')
-      .post('/api/v1/orders/add', testAddOrder)
+      .post('/api/v1/orders/add', {order: testAddOrder})
       .reply(500, 'oh no!')
 
     test('when call fails', () => {
