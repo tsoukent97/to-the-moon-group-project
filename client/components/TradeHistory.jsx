@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react'
-// import { kent and dainys stuff } from '../apis'
-import { addSocketListeners, closeSocket } from '../sockets/trades'
+// import { getHistory } from '../apis'
 
 function TradeHistory () {
   const [trades, setTrades] = useState([])
+
+  useEffect(() => {
+    return refreshTradeHistory()
+  }, [])
+
+  function refreshTradeHistory () {
+    getHistory()
+      .then((trades) => {
+        return setTrades(trades)
+      })
+      .catch((e) => console.log(e))
+  }
 
   return (
     <>
@@ -22,7 +33,8 @@ function TradeHistory () {
           </tr>
         </thead>
         <tbody>
-          {trades.map(())}
+          {/* trades map () => {
+          } */}
         </tbody>
       </table>
     </>
