@@ -12,4 +12,4 @@ server.use(express.static(path.join(__dirname, 'public')))
 server.use('/api/v1/balance', balanceRoutes)
 server.use('/api/v1/orders', orderRoutes)
 
-module.exports = server
+module.exports = server 
