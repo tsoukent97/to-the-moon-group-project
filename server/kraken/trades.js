@@ -6,7 +6,14 @@ function getTradesHistory () {
     function tradeTransform (obj) {
         const returnArr = Object.keys(obj).map((id) => {
             return {
-                id
+                id,
+                pair:obj[id].pair,
+                time:obj[id].time,
+                type:obj[id].type,
+                ordertype: obj[id].ordertype,
+                price:obj[id].price,
+                fee: obj[id].fee,
+                vol: obj[id].vol
                 // pair: obj[id].descr.pair,
                 // time: obj[id].time,
                 // type: obj[id].descr.type,
