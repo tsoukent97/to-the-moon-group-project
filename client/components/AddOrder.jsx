@@ -5,7 +5,7 @@ import { addOrder } from '../apis/index'
 const AddOrder = () => {
   const [order, setOrder] = useState({
     pair: 'XXBTZUSD',
-    price: '45000',
+    price: '55000',
     type: 'Buy'
   })
 
@@ -36,8 +36,8 @@ const AddOrder = () => {
           type="range"
           id="price"
           name="price"
-          min="45000"
-          max="55000"
+          min="50000"
+          max="60000"
           value={order.price}
         /><br/>
         <input type="text" id="textInput" value={order.price} onChange={handleChange}/><br/><br/>
