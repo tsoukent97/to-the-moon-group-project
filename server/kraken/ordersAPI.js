@@ -1,22 +1,6 @@
 const { callKraken } = require('./kraken')
 
-
 function openOrders () {
-
-  function dataTransform (obj) {
-    const returnArr = Object.keys(obj).map((id) => {
-      return {
-        id,
-        opentm: obj[id].opentm,
-        vol: obj[id].vol,
-        price: obj[id].descr.price,
-        pair: obj[id].descr.pair,
-        type: obj[id].descr.type
-      }
-    })
-    return returnArr
-  }
-  
   return callKraken('OpenOrders')
     .then(res => {
       return dataTransform(res.result.open)
@@ -24,6 +8,20 @@ function openOrders () {
     .catch(e => {
       console.log(e)
     })
+}
+
+function dataTransform (obj) {
+  const returnArr = Object.keys(obj).map((id) => {
+    return {
+      id,
+      opentm: obj[id].opentm,
+      vol: obj[id].vol,
+      price: obj[id].descr.price,
+      pair: obj[id].descr.pair,
+      type: obj[id].descr.type
+    }
+  })
+  return returnArr
 }
 
 function addOrder (pair, price, type) {
