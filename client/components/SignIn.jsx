@@ -27,6 +27,7 @@ function SignIn (props) {
       })
       .catch(err => {
         if (err.message === 'INVALID_CREDENTIALS') {
+          // maybe make an alert jatin
           setError('Username and password combination not found')
         }
       })
@@ -49,7 +50,7 @@ function SignIn (props) {
           value={form.password}
           onChange={handleChange} />
 
-          <button onClick={handleClick}>Sign In</button>
+        <button onClick={handleClick}>Sign In</button>
       </form>
     </>
   )
