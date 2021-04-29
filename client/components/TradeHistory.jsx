@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getTrades } from '../apis'
 
 function TradeHistory () {
-  const [trades, setTrades] = useState([{}])
+  const [trades, setTrades] = useState([])
 
   useEffect(() => {
     return refreshTradeHistory()
