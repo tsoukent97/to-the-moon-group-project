@@ -1,6 +1,5 @@
 const express = require('express')
 const path = require('path')
-const request = require('superagent')
 
 const balanceRoutes = require('./routes/balance')
 const orderRoutes = require('./routes/orders')
