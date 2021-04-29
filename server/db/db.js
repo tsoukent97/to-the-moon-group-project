@@ -6,15 +6,16 @@ function getLogs (db = database) {
 }
 
 function addLogEntry (newOrder, newAction, db = database) {
-  return db('audit-log').insert({ user_id: '007', description: newOrder, action: newAction })
+  return db('audit-log').insert({ user_id: '007', order_id: '4', description: newOrder, action: newAction })
 }
 
 function logAddOrder (orderId, userId, db = database) {
-
+  return db('audit-log').insert({ desciption: orderId, user_id: userId })
 }
 
 function logCancelOrder (orderId, userId, db = database) {
-
+  return db('audit-log').del()
+    .where('id', orderId, userId)
 }
 
 module.exports = {

@@ -22,15 +22,13 @@ test('get logs gets all the logs', () => {
 })
 
 test('addLogEntry adds a new record to the audit log database', () => {
-  expect.assertions(1)
   return db.addLogEntry('Order', 'ADD', testDb)
     .then(() => {
       return db.getLogs(testDb).select()
-        .then((records) => {
-          console.log(records)
-          expect(records).toHaveLength(4)
-          return null
-        })
-        .catch(err => expect(err).toBeNull())
     })
+    .then((records) => {
+      console.log(records)
+      return expect(records).toHaveLength(4)
+    })
+    .catch(err => expect(err).toBeNull())
 })
