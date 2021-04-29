@@ -38,3 +38,11 @@ export function addOrder (order) {
       return null
     })
 }
+
+export function getTrades () {
+  return request.get(rootUrl + '/trades')
+    .then((res) => {
+      return res.body
+    })
+    .catch(e => console.log(e))
+}
