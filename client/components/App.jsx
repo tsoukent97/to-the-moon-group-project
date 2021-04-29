@@ -12,9 +12,9 @@ function App () {
       <div className="app">
         <Balance />
         <OpenOrders />
+        <TradeHistory />
         <AddOrder />
         <LiveTrades />
-        <TradeHistory />
       </div>
     </>
   )

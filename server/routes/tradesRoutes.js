@@ -3,7 +3,7 @@ const { getTradesHistory } = require('../kraken/trades')
 
 const router = express.Router()
 
-router.get('/trade', (req, res) => {
+router.get('/', (req, res) => {
   getTradesHistory()
     .then((result) => {
       return res.json(result)

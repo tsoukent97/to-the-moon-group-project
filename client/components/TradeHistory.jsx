@@ -5,7 +5,7 @@ function TradeHistory () {
   const [trades, setTrades] = useState([])
 
   useEffect(() => {
-    return refreshTradeHistory()
+    setTimeout(refreshTradeHistory, 1000)
   }, [])
 
   function refreshTradeHistory () {
@@ -42,7 +42,7 @@ function TradeHistory () {
               <td>{trade.ordertype}</td>
               <td>{trade.price}</td>
               <td>{trade.fee}</td>
-              <td>{trade.volume}</td>
+              <td>{trade.vol}</td>
             </tr>
           )}
         </tbody>
