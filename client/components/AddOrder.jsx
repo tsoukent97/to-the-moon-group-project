@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { addOrder } from '../apis/index'
-import { errorMessage } from '../actions'
+import { setError } from '../actions'
 import { connect } from 'react-redux'
 
 const AddOrder = ({ dispatch }) => {
@@ -14,7 +14,7 @@ const AddOrder = ({ dispatch }) => {
     e.preventDefault()
     addOrder(order)
       .catch(e => {
-        dispatch(errorMessage(e.message))
+        dispatch(setError(e.message))
       })
   }
 

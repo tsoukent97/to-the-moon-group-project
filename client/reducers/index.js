@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import errorReducer from './errorMessage'
+import setError from './errorMessage'
 
 export default combineReducers({
-  errorMessage: errorReducer
+  errorMessage: setError
 })

@@ -1,6 +1,6 @@
 export const ERROR_MESSAGE = 'ERROR_MESSAGE'
 
-export function errorMessage (errorMessage) {
+export function setError (errorMessage) {
   return {
     type: ERROR_MESSAGE,
     errorMessage: errorMessage
