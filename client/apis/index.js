@@ -42,7 +42,6 @@ export function addOrder (order) {
 export function getTrades () {
   // return request.get(rootUrl + '/')
   // .then(() => {
-  console.log('getTrades index')
   return Promise.resolve([{
     id: 'TXDOOL-3CLKJ-7GSKLC',
     pair: 'XLTCXXBT',
