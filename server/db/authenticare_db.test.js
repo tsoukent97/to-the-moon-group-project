@@ -12,8 +12,11 @@ describe('userExists', () => {
   // test unfinished - need help
   test('returns true when user exists', () => {
     expect.assertions(1)
-    const trial = userExists('ysabel', testDb)
-    expect(trial).toBe(false)
+    return userExists('ysabel', testDb)
+      .then(result => {
+        expect(result).toBe(true)
+        return null
+      })
   })
 })
 
