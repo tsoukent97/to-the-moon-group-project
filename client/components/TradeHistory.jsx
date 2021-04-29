@@ -11,7 +11,6 @@ function TradeHistory () {
   function refreshTradeHistory () {
     getTrades()
       .then((trades) => {
-        console.log('trades')
         return setTrades(trades)
       })
       .catch((e) => console.log(e))
