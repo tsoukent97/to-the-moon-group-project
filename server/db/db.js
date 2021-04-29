@@ -6,7 +6,7 @@ function getLogs (db = database) {
 }
 
 function addLogEntry (newOrder, newAction, db = database) {
-  return db('audit-log').insert({ description: newOrder, action: newAction })
+  return db('audit-log').insert({ user_id: '007', description: newOrder, action: newAction })
 }
 
 function logAddOrder (orderId, userId, db = database) {
