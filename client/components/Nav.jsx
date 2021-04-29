@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { HashRouter as Router, Link } from 'react-router-dom'
 import { logOff } from 'authenticare/client'
 
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
@@ -7,7 +7,7 @@ import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 function Nav () {
   return (
 
-    <div>
+    <Router>
       <Link to='/'>Home </Link>
       <IfNotAuthenticated>
         <Link to='/signin'> Sign In </Link>
@@ -15,7 +15,7 @@ function Nav () {
       <IfAuthenticated>
         <Link to='/' onClick={logOff}>Log Off</Link>
       </IfAuthenticated>
-    </div>
+    </Router>
   )
 }
 
