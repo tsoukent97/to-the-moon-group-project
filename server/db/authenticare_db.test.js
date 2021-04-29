@@ -5,6 +5,7 @@ const testDb = knex(config[env])
 
 const { userExists, getUserByName } = require('./authenticare_db')
 
+jest.setTimeout(30000)
 beforeAll(() => testDb.migrate.latest())
 beforeEach(() => testDb.seed.run())
 
