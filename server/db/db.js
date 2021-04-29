@@ -5,11 +5,21 @@ function getLogs (db = database) {
   return db('audit-log').select()
 }
 
-function addLogEntry (db = database) {
+function addLogEntry (newEntry, db = database) {
+  return db('audit-log').insert({ newEntry })
+}
+
+function logAddOrder (orderId, userId, db = database) {
+
+}
+
+function logCancelOrder (orderId, userId, db = database) {
 
 }
 
 module.exports = {
   addLogEntry,
-  getLogs
+  getLogs,
+  logAddOrder,
+  logCancelOrder
 }

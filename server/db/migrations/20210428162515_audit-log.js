@@ -1,8 +1,10 @@
 exports.up = (knex, Promise) => {
   return knex.schema.createTable('audit-log', table => {
-    table.increments('id')
-    table.string('order_type')
-    table.timestamp('created_at')
+    table.increments('id').primary()
+    table.integer('user_id')
+    table.string('description')
+    table.string('action')
+    table.timestamp('created_at').defaultTo(knex.fn.now())
   })
 }
 
