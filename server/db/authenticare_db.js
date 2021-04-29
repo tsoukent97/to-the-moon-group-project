@@ -8,8 +8,9 @@ module.exports = {
 function userExists (username, db = connection) {
   return db('users').select()
     .where('username', username)
+    .first()
     .then(result => {
-      if (undefined) {
+      if (result === undefined) {
         return false
       } else {
         return true

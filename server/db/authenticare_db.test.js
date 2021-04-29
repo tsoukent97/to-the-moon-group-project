@@ -18,15 +18,25 @@ describe('userExists', () => {
         return null
       })
   })
+  test('returns false when user does not exist', () => {
+    expect.assertions(1)
+    return userExists('bob', testDb)
+      .then(result => {
+        expect(result).toBe(false)
+        return null
+      })
+  })
 })
 
 describe('getUserByName', () => {
-  test.only('returns correct user when username is given', () => {
+  test('returns correct user when username is given', () => {
     expect.assertions(1)
     const user = 'ysabel'
-    return getUserByName(user, testDb).then(result => {
-      expect(result.username).toBe(user)
-    })
+    return getUserByName(user, testDb)
+      .then(result => {
+        expect(result.username).toBe(user)
+        return null
+      })
       .catch(err =>
         console.log(err.message))
   })
