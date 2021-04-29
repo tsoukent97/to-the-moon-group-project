@@ -1,20 +1,8 @@
-// import { getFruits } from '../apis'
+export const ERROR_MESSAGE = 'ERROR_MESSAGE'
 
-// export const SET_FRUITS = 'SET_FRUITS'
-
-// export function setFruits (fruits) {
-//   return {
-//     type: SET_FRUITS,
-//     fruits
-//   }
-// }
-
-// export function fetchFruits () {
-//   return dispatch => {
-//     return getFruits()
-//       .then(fruits => {
-//         dispatch(setFruits(fruits))
-//         return null
-//       })
-//   }
-// }
+export function errorMessage (errorMessage) {
+  return {
+    type: ERROR_MESSAGE,
+    errorMessage: errorMessage
+  }
+}

@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
-
 import { addOrder } from '../apis/index'
+import { errorMessage } from '../actions'
+import { connect } from 'react-redux'
 
-const AddOrder = () => {
+const AddOrder = ({ dispatch }) => {
   const [order, setOrder] = useState({
     pair: 'XXBTZUSD',
-    price: '55000',
+    price: '60000',
     type: 'Buy'
   })
 
   const handleSubmit = e => {
     e.preventDefault()
     addOrder(order)
+      .catch(e => {
+        dispatch(errorMessage(e.message))
+      })
   }
 
   const handleChange = e => {
@@ -51,4 +55,4 @@ const AddOrder = () => {
   )
 }
 
-export default AddOrder
+export default connect()(AddOrder)

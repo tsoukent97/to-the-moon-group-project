@@ -5,6 +5,7 @@ import OpenOrders from './OpenOrders'
 import AddOrder from './AddOrder'
 import LiveTrades from './LiveTrades'
 import TradeHistory from './TradeHistory'
+import DisplayError from './DisplayError'
 
 function App () {
   return (
@@ -13,6 +14,7 @@ function App () {
         <Balance />
         <OpenOrders />
         <AddOrder />
+        <DisplayError />
         <LiveTrades />
         <TradeHistory />
       </div>
