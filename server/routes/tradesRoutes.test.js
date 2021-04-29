@@ -12,12 +12,12 @@ jest.mock('../kraken/trades', () => {
   }
 })
 
-describe('GET /api/v1/trades/trade', () => {
+describe('GET /api/v1/trades', () => {
   it('responds with trade history array', () => {
     api.getTradesHistory.mockImplementation(() => Promise.resolve(mockReturnTradesHistory))
 
     return request(server)
-      .get(baseURL + '/trade')
+      .get(baseURL)
       .expect(200)
       .then(res => {
         expect(typeof res.body).toEqual('object')
