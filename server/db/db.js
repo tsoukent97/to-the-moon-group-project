@@ -5,8 +5,8 @@ function getLogs (db = database) {
   return db('audit-log').select()
 }
 
-function addLogEntry (newEntry, db = database) {
-  return db('audit-log').insert({ newEntry })
+function addLogEntry (newOrder, newAction, db = database) {
+  return db('audit-log').insert({ description: newOrder, action: newAction })
 }
 
 function logAddOrder (orderId, userId, db = database) {
