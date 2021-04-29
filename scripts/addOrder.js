@@ -4,7 +4,7 @@ callKraken('AddOrder', {
   pair: 'XXBTZUSD',
   type: 'sell',
   ordertype: 'limit',
-  price: '55000',
+  price: '60000',
   volume: '0.0002'
 })
   .then(res => {
