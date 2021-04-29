@@ -61,7 +61,7 @@ function SignIn (props) {
           value={form.password}
           onChange={handleChange} />
 
-        <button onClick={handleClick}>Sign In</button>
+        <button data-testid='signin' onClick={handleClick}>Sign In</button>
       </form>
     </>
   )

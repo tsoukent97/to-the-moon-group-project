@@ -1,8 +1,7 @@
 import React from 'react'
-
 import { render, screen, act, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
-
+import { isAuthenticated } from 'authenticare/client'
 import SignIn from './SignIn'
 
 test('renders 2 input components', () => {
@@ -28,4 +27,21 @@ test('should submit when form has text', async () => {
   })
 
   expect(queryByText('Error:Username and password combination not found')).not.toBeInTheDocument()
+})
+
+jest.mock('authenticare/client', () => {
+  return {
+    isAuthenticated: jest.fn()
+  }
+})
+describe('if user is not authenticated', () => {
+  test('shows error message', () => {
+    isAuthenticated.mockImplementation(() => false)
+    render(<SignIn/>)
+
+    const leftClick = { button: 0 }
+    fireEvent.click(screen.getByTestId('signin'), leftClick)
+
+    expect(screen.getByText('Error:Username and password combination not found')).toBeInTheDocument()
+  })
 })
