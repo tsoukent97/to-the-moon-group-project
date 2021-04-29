@@ -1,8 +1,16 @@
 import React from 'react'
-import { render, screen, act, fireEvent } from '@testing-library/react'
+import { render, screen, act, fireEvent, waitFor } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { isAuthenticated } from 'authenticare/client'
+import { isAuthenticated, signIn } from 'authenticare/client'
+
 import SignIn from './SignIn'
+
+jest.mock('authenticare/client', () => {
+  return {
+    isAuthenticated: jest.fn(),
+    signIn: jest.fn()
+  }
+})
 
 test('renders 2 input components', () => {
   const { getByPlaceholderText } = render(<SignIn/>)
@@ -29,19 +37,17 @@ test('should submit when form has text', async () => {
   expect(queryByText('Error:Username and password combination not found')).not.toBeInTheDocument()
 })
 
-jest.mock('authenticare/client', () => {
-  return {
-    isAuthenticated: jest.fn()
-  }
-})
 describe('if user is not authenticated', () => {
-  test('shows error message', () => {
+  test('shows error message', async () => {
     isAuthenticated.mockImplementation(() => false)
-    render(<SignIn/>)
+    signIn.mockImplementation(() => Promise.reject(new Error('INVALID_CREDENTIALS')))
 
+    render(<SignIn/>)
     const leftClick = { button: 0 }
-    fireEvent.click(screen.getByTestId('signin'), leftClick)
+    fireEvent.click(screen.getByRole('button'), leftClick)
+    await waitFor(() => expect(signIn).toHaveBeenCalledTimes(1))
 
     expect(screen.getByText('Error:Username and password combination not found')).toBeInTheDocument()
   })
 })
+

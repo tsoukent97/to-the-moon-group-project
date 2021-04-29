@@ -1,21 +1,20 @@
 import React from 'react'
-import { HashRouter as Router, Link } from 'react-router-dom'
+import { HashRouter as Router, NavLink } from 'react-router-dom'
 import { logOff } from 'authenticare/client'
 
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 
 function Nav () {
   return (
-
-    <Router>
-      <Link to='/'>Home </Link>
+    <>
+      <NavLink to='/'>Home </NavLink>
       <IfNotAuthenticated>
-        <Link to='/signin'> Sign In </Link>
+        <NavLink to='/signin'> Sign In </NavLink>
       </IfNotAuthenticated>
       <IfAuthenticated>
-        <Link to='/' onClick={logOff}>Log Off</Link>
+        <NavLink to='/signin' onClick={logOff}>Log Off</NavLink>
       </IfAuthenticated>
-    </Router>
+    </>
   )
 }
 

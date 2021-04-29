@@ -25,7 +25,8 @@ function SignIn (props) {
     e.preventDefault()
     const { username, password } = form
     signIn({ username, password }, { baseUrl })
-      .then(() => {
+      .then((result) => {
+        console.log(result)
         // eslint-disable-next-line promise/always-return
         if (isAuthenticated()) {
           props.history.push('/')

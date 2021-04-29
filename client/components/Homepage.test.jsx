@@ -54,9 +54,9 @@ describe('if user is autheticated', () => {
 
     expect(button[0].innerHTML).toContain('balance')
     expect(button[1].innerHTML).toContain('open orders')
-    expect(button[2].innerHTML).toContain('add order')
-    expect(button[3].innerHTML).toContain('live trades')
-    expect(button[4].innerHTML).toContain('trade history')
+    expect(button[2].innerHTML).toContain('trade history')
+    expect(button[3].innerHTML).toContain('add order')
+    expect(button[4].innerHTML).toContain('live trades')
   })
 })
 
