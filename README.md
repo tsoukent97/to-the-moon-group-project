@@ -62,7 +62,7 @@ The GET /api/v1/trades request will send back an object like
         ordertype: 'limit',
         price: '0.01958100',
         fee: '0.00000509',
-        volume: 0.10000000'
+        vol: 0.10000000'
       },
       {
         id: 'ORZHUE-SYBVN-Z5KG22'',
@@ -72,7 +72,7 @@ The GET /api/v1/trades request will send back an object like
         ordertype: 'market',
         price: '144.31000',
         fee: '3.75206',
-        volume: 10.0000000'
+        vol: 10.0000000'
       }
     ]
 ```

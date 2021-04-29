@@ -12,9 +12,9 @@ function Homepage () {
       <IfAuthenticated>
         <Balance/>
         <OpenOrders/>
+        <TradeHistory/>
         <AddOrder/>
         <LiveTrades/>
-        <TradeHistory/>
       </IfAuthenticated>
 
       <IfNotAuthenticated>
