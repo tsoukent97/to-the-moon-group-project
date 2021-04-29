@@ -27,8 +27,29 @@ test('addLogEntry adds a new record to the audit log database', () => {
       return db.getLogs(testDb).select()
     })
     .then((records) => {
-      console.log(records)
       return expect(records).toHaveLength(4)
     })
     .catch(err => expect(err).toBeNull())
+})
+
+test('logAddOrder adds a new record to the audit log database', () => {
+  return db.logAddOrder('O5MMVR-77NIT-MCFYRH', '555', testDb)
+    .then(() => {
+      return db.getLogs(testDb).select()
+    })
+    .then((records) => {
+      console.log('ADD LOG', records)
+      return expect(records).toHaveLength(4)
+    })
+})
+
+test('logCancelOrder adds a new record to the audit log database', () => {
+  return db.logCancelOrder('OCZ3ZV-B77PU-SRDHRQ', '666', testDb)
+    .then(() => {
+      return db.getLogs(testDb).select()
+    })
+    .then((records) => {
+      console.log('CANCEL LOG', records)
+      return expect(records).toHaveLength(4)
+    })
 })
