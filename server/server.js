@@ -4,7 +4,7 @@ const request = require('superagent')
 
 const balanceRoutes = require('./routes/balance')
 const orderRoutes = require('./routes/orders')
-const tradeRoutes = require('./routes/trades')
+const tradeRoutes = require('./routes/tradesRoutes')
 
 const server = express()
 
