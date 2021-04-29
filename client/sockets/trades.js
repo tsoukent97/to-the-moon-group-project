@@ -27,9 +27,11 @@ export function addSocketListeners (addNewTrades) {
 
   socket.addEventListener('message', (res) => {
     const response = JSON.parse(res.data)
-    if (response.length) {
-      const trades = formatTrades(response[1])
-      addNewTrades(trades)
+    if ((response.event === undefined || response.event !== 'heartbeat') && (response[0] === 321)) {
+      if (response.length) {
+        const trades = formatTrades(response[1])
+        addNewTrades(trades)
+      }
     }
   })
 }

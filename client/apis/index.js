@@ -38,3 +38,10 @@ export function addOrder (order) {
       return null
     })
 }
+
+export function getPrevCandles () {
+  return request.get(rootUrl + '/candles')
+    .then(res => {
+      return res.body
+    })
+}

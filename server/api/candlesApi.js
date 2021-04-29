@@ -3,7 +3,7 @@ const request = require('superagent')
 const krakenUrl = 'https://api.kraken.com/0/public/OHLC'
 
 function getPrevCandles () {
-  return request.get(krakenUrl + '?pair=XBTUSD')
+  return request.get(krakenUrl + '?pair=XBTUSD&interval=60')
     .then(res => {
       return res.body
     })
