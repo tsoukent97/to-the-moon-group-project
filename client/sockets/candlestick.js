@@ -9,7 +9,7 @@ export function addSocketListeners (updateCandle) {
         'XBT/USD'
       ],
       subscription: {
-        interval: 60,
+        interval: 1,
         name: 'ohlc'
       }
     }))
@@ -29,7 +29,7 @@ export function addSocketListeners (updateCandle) {
 
   socket.addEventListener('message', (res) => {
     const response = JSON.parse(res.data)
-    if ((response.event === undefined || response.event !== 'heartbeat') && (response[0] === 331)) {
+    if ((response.event === undefined || response.event !== 'heartbeat') && (response[2] && response[2].includes('ohlc'))) {
       updateCandle(response)
     }
   })
@@ -43,9 +43,3 @@ export function closeSocket () {
 //   closeSocket,
 //   addSocketListeners
 // }
-
-
-//call rest API to get historic candles
-//subscribe sockets Api to get running candle
-//is the end time different to the endtime of the last candle - if it is add new candle
-//Mess around with 1 min candles

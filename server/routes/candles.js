@@ -7,7 +7,6 @@ const router = express.Router()
 router.get('/', (req, res) => {
   getPrevCandles()
     .then((candles) => {
-      console.log(candles)
       res.json(candles)
       return null
     })
