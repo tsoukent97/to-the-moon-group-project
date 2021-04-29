@@ -9,23 +9,25 @@ beforeAll(() => testDb.migrate.latest())
 beforeEach(() => testDb.seed.run())
 
 describe('userExists', () => {
-  // test unfinished - need help
   test('returns true when user exists', () => {
     expect.assertions(1)
-    const trial = userExists('ysabel', testDb)
-    expect(trial).toBe(false)
+    return userExists('ysabel', testDb)
+      .then(result => {
+        expect(result).toBe(true)
+        return null
+      })
   })
 })
 
 describe('getUserByName', () => {
-  test('returns correct user when username is given', () => {
+  test.only('returns correct user when username is given', () => {
     expect.assertions(1)
     const user = 'ysabel'
-    return getUserByName(user, testDb)
-      .then(result => {
-        expect(result.username).toBe(user)
-        return null
-      })
+    return getUserByName(user, testDb).then(result => {
+      expect(result.username).toBe(user)
+    })
+      .catch(err =>
+        console.log(err.message))
   })
   test('returns an object with an id, username and hash property', () => {
     expect.assertions(3)
