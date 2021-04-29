@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-
+import { connect } from 'react-redux'
 import { getOrders } from '../apis'
 import CancelOrder from './CancelOrder'
 
@@ -44,4 +44,5 @@ function OpenOrders () {
   )
 }
 
-export default OpenOrders
+export default connect()(OpenOrders)
+
