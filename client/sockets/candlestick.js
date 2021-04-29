@@ -1,5 +1,6 @@
 import socket from './krakenWebSocket'
 // const { socket } = require('./krakenWebSocket')
+import { filter } from './filter'
 
 export function addSocketListeners (updateCandle) {
   socket.addEventListener('open', () => {
@@ -29,9 +30,9 @@ export function addSocketListeners (updateCandle) {
 
   socket.addEventListener('message', (res) => {
     const response = JSON.parse(res.data)
-    if ((response.event === undefined || response.event !== 'heartbeat') && (response[2] && response[2].includes('ohlc'))) {
+    filter(response, 'ohlc', () => {
       updateCandle(response)
-    }
+    })
   })
 }
 

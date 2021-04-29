@@ -1,4 +1,5 @@
 import socket from './krakenWebSocket'
+import { filter } from './filter'
 
 export function addSocketListeners (addNewTrades) {
   socket.addEventListener('open', () => {
@@ -27,12 +28,12 @@ export function addSocketListeners (addNewTrades) {
 
   socket.addEventListener('message', (res) => {
     const response = JSON.parse(res.data)
-    if ((response.event === undefined || response.event !== 'heartbeat') && (response[0] === 321)) {
+    filter(response, 'trade', () => {
       if (response.length) {
         const trades = formatTrades(response[1])
         addNewTrades(trades)
       }
-    }
+    })
   })
 }
 
