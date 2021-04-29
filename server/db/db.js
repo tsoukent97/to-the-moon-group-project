@@ -10,7 +10,7 @@ function addLogEntry (newOrder, newAction, db = database) {
 }
 
 function logAddOrder (orderId, userId, db = database) {
-  return db('audit-log').insert({ desciption: orderId, user_id: userId })
+  return db('audit-log').insert({ order_id: orderId, user_id: userId })
 }
 
 function logCancelOrder (orderId, userId, db = database) {

@@ -1,6 +1,7 @@
 const express = require('express')
 const { openOrders, cancelOrder, addOrder } = require('../kraken/ordersAPI')
 const { callKraken } = require('../kraken/kraken')
+const db = require('../db/db')
 
 const router = express.Router()
 
