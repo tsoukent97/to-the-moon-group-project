@@ -15,6 +15,7 @@ router.get('/open', (req, res) => {
 
 router.post('/add', (req, res) => {
   let { pair, type, price } = req.body.order
+  db.logAddOrder({ orderId: '5' }, { userId: '5' })
   type = type.toLowerCase()
   if (typeof pair === 'string' && typeof type === 'string' && typeof price === 'string') {
     callKraken('Ticker', { pair: pair }).then((data) => {
@@ -49,6 +50,8 @@ router.post('/add', (req, res) => {
 
 router.post('/cancel/:txid', (req, res) => {
   const { txid } = req.params
+  console.log('txid:', txid)
+  db.logCancelOrder(txid)
   cancelOrder(txid)
     .then(() => res.sendStatus(200))
     .catch((err) => res.status(500).send(err.message))
