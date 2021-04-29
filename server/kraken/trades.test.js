@@ -8,11 +8,9 @@ KrakenClient.mockImplementation(() => fakeKraken)
 describe('getTradesHistory', () => {
     const getHistory = mockGetTradesHistory.result
     const received = Object.keys(getHistory.trades)
-    console.log(mockGetTradesHistory)
 
     const firstTrade = getHistory.trades['TAJZ7Y-TDY4I-AAM2CR']
     
-
     const expected = {
         id: 'TAJZ7Y-TDY4I-AAM2CR',
         pair: firstTrade.pair,
@@ -23,7 +21,7 @@ describe('getTradesHistory', () => {
         fee: firstTrade.fee,
         vol: firstTrade.vol 
     }
-    console.log(expected)
+    
     test('calls getTradesHistory', () => {
         fakeKraken.api.mockImplementation(() => Promise.resolve({ result: getHistory}))
         return getTradesHistory()
