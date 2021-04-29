@@ -15,7 +15,4 @@ server.use('/api/v1/balance', balanceRoutes)
 server.use('/api/v1/orders', orderRoutes)
 server.use('/api/v1/trades', tradeRoutes)
 
-
 module.exports = server
-
-
