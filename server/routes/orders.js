@@ -15,16 +15,15 @@ router.get('/open', (req, res) => {
 
 router.post('/add', (req, res) => {
   let { pair, type, price } = req.body.order
-  db.logAddOrder({ orderId: '5' }, { userId: '5' })
   type = type.toLowerCase()
   if (typeof pair === 'string' && typeof type === 'string' && typeof price === 'string') {
     callKraken('Ticker', { pair: pair }).then((data) => {
       const currentPrice = Number(data.result[pair].c[0])
 
       if (type === 'sell' && (Number(price) > (currentPrice * 1.01))) {
-        priceUpdated()
+        postAddOrder('5')
       } else if (type === 'buy' && (Number(price) < (currentPrice * 0.99))) {
-        priceUpdated()
+        postAddOrder('5')
       } else {
         res.send('Your order price was too close to last trade price (+/-1%)')
       }
@@ -34,10 +33,13 @@ router.post('/add', (req, res) => {
     res.send('Error: Invalid Input Type')
   }
 
-  function priceUpdated () {
+  function postAddOrder (userId) {
     addOrder(pair, price, type)
-      .then((results) => {
-        res.send(results)
+      .then(response => {
+        console.log('line 39', response)
+        console.log('line 40', response.result.txid)
+        db.logAddOrder(response.result.txid, userId)
+        res.send(response)
         return null
       }).catch(e => console.log(e))
   }
@@ -50,8 +52,8 @@ router.post('/add', (req, res) => {
 
 router.post('/cancel/:txid', (req, res) => {
   const { txid } = req.params
-  console.log('txid:', txid)
-  db.logCancelOrder(txid)
+  console.log('cancel txid:', txid)
+  db.logCancelOrder(txid, '5')
   cancelOrder(txid)
     .then(() => res.sendStatus(200))
     .catch((err) => res.status(500).send(err.message))

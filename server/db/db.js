@@ -10,14 +10,13 @@ function addLogEntry (newOrder, newAction, db = database) {
 }
 
 function logAddOrder (orderId, userId, db = database) {
-  const { newOrderId } = orderId
-  const { newUserId } = userId
-  return db('audit-log').insert({ order_id: newOrderId, user_id: newUserId })
+  console.log('log add order called')
+  return db('audit-log').insert({ action: 'ADD', order_id: orderId, user_id: userId })
 }
 
 function logCancelOrder (orderId, userId, db = database) {
-  return db('audit-log').del()
-    .where('order_id', orderId, userId)
+  console.log('log cancel order called')
+  return db('audit-log').insert({ action: 'CANCEl', order_id: orderId, user_id: userId })
 }
 
 module.exports = {
