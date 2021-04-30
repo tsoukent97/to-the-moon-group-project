@@ -1,19 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { closeErrorMessage } from '../actions'
-import { getBalance } from '../apis/index'
+import { setError } from '../actions'
 
-const ErrorMessage = (props, { dispatch }) => {
+
+const ErrorMessage = (props) => {
   const closeError = () => {
-    getBalance()
-      .then(() => {
-        dispatch(closeErrorMessage('')
-        )
-        return null
-      })
-      .catch(e => {
-        console.log('this doesnt work')
-      })
+    props.dispatch(setError(''))
   }
 
   return (
