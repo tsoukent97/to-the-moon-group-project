@@ -5,7 +5,7 @@ const express = require('express')
 const router = express.Router()
 
 router.get('/', (req, res) => {
-  getPrevCandles()
+  getPrevCandles(req.query.interval)
     .then((candles) => {
       res.json(candles)
       return null
