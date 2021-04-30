@@ -10,7 +10,7 @@ function callKraken (method, params) {
     .api(method, params)
     .then(res => res)
     .catch(e => {
-      throw e
+      return e.message
     })
 }
 

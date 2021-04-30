@@ -10,7 +10,7 @@ const ErrorMessage = (props) => {
 
   return (
     <div className='error'>
-      {props.errorMessage === '' ? props.errorMessage : <div>{props.errorMessage}<button onClick={closeError}>X</button></div> }
+      {props.errorMessage === '' ? props.errorMessage : <div style={{ color: 'red' }}>{props.errorMessage}<button onClick={closeError}>X</button></div> }
     </div>
   )
 }
