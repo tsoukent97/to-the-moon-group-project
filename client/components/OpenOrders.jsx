@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import {setOpenOrders} from '../actions'
+import { setOpenOrders } from '../actions'
 import { getOrders } from '../apis'
 import CancelOrder from './CancelOrder'
 
 function OpenOrders (props) {
-  
   useEffect(() => {
     setTimeout(refreshOrderList, 500)
   }, [])
@@ -13,8 +12,8 @@ function OpenOrders (props) {
   function refreshOrderList () {
     getOrders()
       .then((orders) => {
-        console.log(orders)
         props.dispatch(setOpenOrders(orders))
+        return null
       })
       .catch((e) => console.log(e))
   }
@@ -52,4 +51,3 @@ const mapStateToProps = reduxState => {
 }
 
 export default connect(mapStateToProps)(OpenOrders)
-
