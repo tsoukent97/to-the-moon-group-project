@@ -42,7 +42,7 @@ function SignIn (props) {
   return (
     <>
       <h1>Sign In</h1>
-      <div onClick={hideError}>
+      <div data-testid='error' onClick={hideError}>
         { error && `Error:${error}`}
       </div>
       <form data-testid='form'>

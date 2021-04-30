@@ -51,3 +51,17 @@ describe('if user is not authenticated', () => {
   })
 })
 
+describe('if user is authenticated', () => {
+  test('user is logged in', async () => {
+    signIn.mockImplementation(() => Promise.resolve({ id: 2, username: 'jatin', iat: 1619740364, exp: 1619826764 }))
+    isAuthenticated.mockImplementation(() => true)
+
+    render(<SignIn/>)
+    const leftClick = { button: 0 }
+    fireEvent.click(screen.getByTestId('signin'), leftClick)
+    await waitFor(() => expect(signIn).toHaveBeenCalledTimes(2))
+
+    const error = screen.getByTestId('error')
+    expect(error).toBeEmptyDOMElement()
+  })
+})
