@@ -1,7 +1,8 @@
-export const actionCreatorName = () => {
+export const SET_OPEN_ORDERS = 'SET_OPEN_ORDERS'
+
+export function setOpenOrders (orders) {
     return {
-        type: 'ACTION_TYPE'
+        type: SET_OPEN_ORDERS,
+        orders: orders
     }
 }
-
-export const 
