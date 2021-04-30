@@ -38,7 +38,7 @@ router.post('/add', (req, res) => {
       .then(response => {
         // eslint-disable-next-line promise/no-nesting
         return db.logAddOrder(response.result.txid, userId)
-          .then(id => {
+          .then(() => {
             res.send(response)
             return null
           })

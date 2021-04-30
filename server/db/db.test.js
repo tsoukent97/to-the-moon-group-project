@@ -4,6 +4,7 @@ const db = require('./db')
 
 let testDb = null
 
+jest.setTimeout(30000)
 beforeEach(() => {
   testDb = testEnv.getTestDb()
   return testEnv.initialise(testDb)

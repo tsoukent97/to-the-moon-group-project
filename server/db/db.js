@@ -10,13 +10,11 @@ function addLogEntry (newOrder, newAction, db = database) {
 }
 
 function logAddOrder (orderId, userId, db = database) {
-  console.log('log add order called')
-  return db('audit-log').insert({ action: 'ADD', order_id: orderId, user_id: userId })
+  return db('audit-log').insert({ action: 'ADD', description: 'Order', order_id: orderId, user_id: userId })
 }
 
 function logCancelOrder (orderId, userId, db = database) {
-  console.log(orderId, userId, 'log cancel order called')
-  return db('audit-log').insert({ action: 'CANCEl', order_id: orderId, user_id: userId })
+  return db('audit-log').insert({ action: 'CANCEl', description: 'Order', order_id: orderId, user_id: userId })
 }
 
 module.exports = {
