@@ -1,3 +1,3 @@
-const { addSocketListeners, closeSocket } = require('../client/sockets/candlestick')
+const { addSocketListeners } = require('../client/sockets/candlestick')
 
 addSocketListeners()
