@@ -11,6 +11,7 @@ function Homepage () {
   return (
     <>
       <IfAuthenticated>
+        <CandlestickChart/>
         <Balance/>
         <OpenOrders/>
         <TradeHistory/>
