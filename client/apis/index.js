@@ -45,3 +45,11 @@ export function getCandles (interval) {
       return res.body
     })
 }
+
+export function getTrades () {
+  return request.get(rootUrl + '/trades')
+    .then((res) => {
+      return res.body
+    })
+    .catch(e => console.log(e))
+}
