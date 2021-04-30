@@ -9,6 +9,7 @@ import OpenOrders from './OpenOrders'
 import AddOrder from './AddOrder'
 import LiveTrades from './LiveTrades'
 import TradeHistory from './TradeHistory'
+import DisplayError from './DisplayError'
 
 jest.mock('authenticare/client', () => {
   return {
@@ -19,33 +20,36 @@ jest.mock('authenticare/client', () => {
 jest.mock('./Balance.jsx', () => jest.fn())
 jest.mock('./OpenOrders.jsx', () => jest.fn())
 jest.mock('./AddOrder.jsx', () => jest.fn())
+jest.mock('./DisplayError.jsx', () => jest.fn())
 jest.mock('./LiveTrades.jsx', () => jest.fn())
 jest.mock('./TradeHistory.jsx', () => jest.fn())
 
 describe('if user is autheticated', () => {
-  test('shows 5 components when authenticated', () => {
+  test('shows 6 components when authenticated', () => {
     expect.assertions(1)
 
     isAuthenticated.mockImplementation(() => true)
     Balance.mockImplementation(() => { return <button>balance</button> })
     OpenOrders.mockImplementation(() => { return <button>open orders</button> })
     AddOrder.mockImplementation(() => { return <button>add order</button> })
+    DisplayError.mockImplementation(() => { return <button>display error</button> })
     LiveTrades.mockImplementation(() => { return <button>live trades</button> })
     TradeHistory.mockImplementation(() => { return <button>trade history</button> })
 
     render(<Homepage/>)
 
     const button = screen.getAllByRole('button')
-    expect(button).toHaveLength(5)
+    expect(button).toHaveLength(6)
   })
 
   test('shows the correct compnents', () => {
-    expect.assertions(5)
+    expect.assertions(6)
 
     isAuthenticated.mockImplementation(() => true)
     Balance.mockImplementation(() => { return <button>balance</button> })
     OpenOrders.mockImplementation(() => { return <button>open orders</button> })
     AddOrder.mockImplementation(() => { return <button>add order</button> })
+    DisplayError.mockImplementation(() => { return <button>display error</button> })
     LiveTrades.mockImplementation(() => { return <button>live trades</button> })
     TradeHistory.mockImplementation(() => { return <button>trade history</button> })
 
@@ -56,7 +60,8 @@ describe('if user is autheticated', () => {
     expect(button[1].innerHTML).toContain('open orders')
     expect(button[2].innerHTML).toContain('trade history')
     expect(button[3].innerHTML).toContain('add order')
-    expect(button[4].innerHTML).toContain('live trades')
+    expect(button[4].innerHTML).toContain('display error')
+    expect(button[5].innerHTML).toContain('live trades')
   })
 })
 
