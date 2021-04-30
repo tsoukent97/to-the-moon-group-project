@@ -1,5 +1,5 @@
 import React from 'react'
-import { HashRouter as Router, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { logOff } from 'authenticare/client'
 
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
