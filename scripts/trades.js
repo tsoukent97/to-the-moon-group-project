@@ -1,3 +1,7 @@
+// const { addSocketListeners } = require('../client/sockets/trades')
+
+// addSocketListeners()
+
 const { callKraken } = require('../server/kraken/kraken')
 
 callKraken('TradesHistory', {})
