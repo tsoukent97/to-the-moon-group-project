@@ -27,7 +27,7 @@ const CandlestickChart = () => {
         if (prevCandles.result.XXBTZUSD.length > 100) {
           setCandles(prevCandles.result.XXBTZUSD.splice(-100))
         } else {
-          setCandles(prevCandles.result.XXBTZUSD.splice(-(candles.length)))
+          setCandles(prevCandles.result.XXBTZUSD.splice(-(prevCandles.length)))
         }
         return null
       })
@@ -47,7 +47,7 @@ const CandlestickChart = () => {
     ]
   }
 
-  if (candles.length > 0) {
+  if (candles.length > 0 && lastCandle) {
     const currentLastCandle = candles[candles.length - 1]
     const lastClose = currentLastCandle[4]
     if (lastClose !== lastCandle[5]) {
@@ -60,7 +60,7 @@ const CandlestickChart = () => {
   function overWriteLastCandle () {
     const currentLastCandle = candles[candles.length - 1]
     if (lastCandle) {
-      for (let i = 2; i < 8; i++) {
+      for (let i = 1; i < 8; i++) {
         currentLastCandle[i] = lastCandle[i + 1]
       }
       if (candles.length > 100) {
