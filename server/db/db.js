@@ -15,7 +15,7 @@ function logAddOrder (orderId, userId, db = database) {
 }
 
 function logCancelOrder (orderId, userId, db = database) {
-  console.log('log cancel order called')
+  console.log(orderId, userId, 'log cancel order called')
   return db('audit-log').insert({ action: 'CANCEl', order_id: orderId, user_id: userId })
 }
 
