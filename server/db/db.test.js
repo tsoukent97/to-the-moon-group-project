@@ -39,7 +39,6 @@ test('logAddOrder adds a new record to the audit log database', () => {
       return db.getLogs(testDb).select()
     })
     .then((records) => {
-      console.log('ADD LOG', records)
       return expect(records).toHaveLength(4)
     })
 })
@@ -50,7 +49,6 @@ test('logCancelOrder adds a new record to the audit log database', () => {
       return db.getLogs(testDb).select()
     })
     .then((records) => {
-      console.log('CANCEL LOG', records)
       return expect(records).toHaveLength(4)
     })
 })
