@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { setError } from '../actions'
 
-
 const ErrorMessage = (props) => {
   const closeError = () => {
     props.dispatch(setError(''))
