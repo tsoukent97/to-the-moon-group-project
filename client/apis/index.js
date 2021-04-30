@@ -13,6 +13,7 @@ export function getBalance () {
 export function getOrders () {
   return request.get(rootUrl + '/orders/open')
     .then(res => {
+      console.log('api', res.body)
       return res.body
     })
     .catch(e => console.log(e))
