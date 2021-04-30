@@ -3,8 +3,16 @@ import { screen, render, waitFor } from '@testing-library/react'
 
 import OpenOrders from './OpenOrders'
 import { getOrders } from '../apis'
+import { Provider } from 'react-redux'
 
 jest.mock('../apis')
+
+const store = {
+  dispatch: jest.fn(),
+  getState: jest.fn(),
+  subscribe: jest.fn()
+}
+
 test('render a <tr></tr> for each openOrders item', async () => {
   getOrders.mockImplementation(() => {
     return Promise.resolve([
@@ -26,7 +34,9 @@ test('render a <tr></tr> for each openOrders item', async () => {
       }
     ])
   })
-  render(<OpenOrders/>)
+
+  render(<Provider store={store}><OpenOrders/></Provider>)
+  
   await waitFor(() => {
     return getOrders.mock.calls.length > 0
   })
