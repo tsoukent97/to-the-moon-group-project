@@ -1,22 +1,19 @@
 import React from 'react'
+import { HashRouter as Router, Route } from 'react-router-dom'
 
-import Balance from './Balance.jsx'
-import OpenOrders from './OpenOrders'
-import AddOrder from './AddOrder'
-import LiveTrades from './LiveTrades'
-import TradeHistory from './TradeHistory'
+import Homepage from './Homepage'
+import Nav from './Nav'
+import SignIn from './SignIn'
 
 function App () {
   return (
-    <>
-      <div className="app">
-        <Balance />
-        <OpenOrders />
-        <AddOrder />
-        <LiveTrades />
-        <TradeHistory />
-      </div>
-    </>
+    <div className="app">
+      <Router>
+        <Route path='/' component={Nav}/>
+        <Route exact path='/' component={Homepage}/>
+        <Route exact path='/signin' component={SignIn}/>
+      </Router>
+    </div>
   )
 }
 

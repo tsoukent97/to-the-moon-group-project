@@ -8,3 +8,5 @@ server/public/styles.css.map
 .env
 tags
 coverage
+tags.temp
+tags.lock
