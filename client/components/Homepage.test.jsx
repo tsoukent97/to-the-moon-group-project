@@ -10,6 +10,7 @@ import AddOrder from './AddOrder'
 import LiveTrades from './LiveTrades'
 import TradeHistory from './TradeHistory'
 import DisplayError from './DisplayError'
+import CandlestickChart from './CandlestickChart'
 
 jest.mock('authenticare/client', () => {
   return {
@@ -23,6 +24,7 @@ jest.mock('./AddOrder.jsx', () => jest.fn())
 jest.mock('./DisplayError.jsx', () => jest.fn())
 jest.mock('./LiveTrades.jsx', () => jest.fn())
 jest.mock('./TradeHistory.jsx', () => jest.fn())
+jest.mock('./CandlestickChart.jsx', () => jest.fn())
 
 describe('if user is autheticated', () => {
   test('shows 6 components when authenticated', () => {
@@ -35,15 +37,16 @@ describe('if user is autheticated', () => {
     DisplayError.mockImplementation(() => { return <button>display error</button> })
     LiveTrades.mockImplementation(() => { return <button>live trades</button> })
     TradeHistory.mockImplementation(() => { return <button>trade history</button> })
+    CandlestickChart.mockImplementation(() => { return <button>candlestick chart</button> })
 
     render(<Homepage/>)
 
     const button = screen.getAllByRole('button')
-    expect(button).toHaveLength(6)
+    expect(button).toHaveLength(7)
   })
 
-  test('shows the correct compnents', () => {
-    expect.assertions(6)
+  test('shows the correct components', () => {
+    expect.assertions(7)
 
     isAuthenticated.mockImplementation(() => true)
     Balance.mockImplementation(() => { return <button>balance</button> })
@@ -52,16 +55,17 @@ describe('if user is autheticated', () => {
     DisplayError.mockImplementation(() => { return <button>display error</button> })
     LiveTrades.mockImplementation(() => { return <button>live trades</button> })
     TradeHistory.mockImplementation(() => { return <button>trade history</button> })
+    CandlestickChart.mockImplementation(() => { return <button>candlestick chart</button> })
 
     render(<Homepage/>)
     const button = screen.getAllByRole('button')
-
-    expect(button[0].innerHTML).toContain('balance')
-    expect(button[1].innerHTML).toContain('open orders')
-    expect(button[2].innerHTML).toContain('trade history')
-    expect(button[3].innerHTML).toContain('add order')
-    expect(button[4].innerHTML).toContain('display error')
-    expect(button[5].innerHTML).toContain('live trades')
+    expect(button[0].innerHTML).toContain('candlestick')
+    expect(button[1].innerHTML).toContain('balance')
+    expect(button[2].innerHTML).toContain('open orders')
+    expect(button[3].innerHTML).toContain('trade history')
+    expect(button[4].innerHTML).toContain('add order')
+    expect(button[5].innerHTML).toContain('display error')
+    expect(button[6].innerHTML).toContain('live trades')
   })
 })
 
@@ -70,19 +74,22 @@ describe('if user is not autheticated', () => {
     expect.assertions(1)
     isAuthenticated.mockImplementation(() => false)
     LiveTrades.mockImplementation(() => { return <button>live trades</button> })
+    CandlestickChart.mockImplementation(() => { return <button>candlestick chart</button> })
 
     render(<Homepage/>)
     const button = screen.getAllByRole('button')
-    expect(button).toHaveLength(1)
+    expect(button).toHaveLength(2)
   })
 
   test('shows the correct component', () => {
-    expect.assertions(1)
+    expect.assertions(2)
     isAuthenticated.mockImplementation(() => false)
     LiveTrades.mockImplementation(() => { return <button>live trades</button> })
+    CandlestickChart.mockImplementation(() => { return <button>candlestick chart</button> })
 
     render(<Homepage/>)
     const button = screen.getAllByRole('button')
-    expect(button[0].innerHTML).toContain('live trades')
+    expect(button[0].innerHTML).toContain('candlestick')
+    expect(button[1].innerHTML).toContain('live trades')
   })
 })

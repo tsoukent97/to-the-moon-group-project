@@ -39,6 +39,13 @@ export function addOrder (order) {
     })
 }
 
+export function getCandles (interval) {
+  return request.get(rootUrl + '/candles?interval=' + interval)
+    .then(res => {
+      return res.body
+    })
+}
+
 export function getTrades () {
   return request.get(rootUrl + '/trades')
     .then((res) => {
