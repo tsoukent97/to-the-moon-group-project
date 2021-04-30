@@ -34,7 +34,6 @@ function addOrder (pair, price, type) {
   }).then((result) => {
     return result
   }).catch(e => {
-    console.log(pair, price, type)
     console.log(e)
   })
 }
