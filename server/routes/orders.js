@@ -36,12 +36,14 @@ router.post('/add', (req, res) => {
   function postAddOrder (userId) {
     addOrder(pair, price, type)
       .then(response => {
-        console.log('line 39', response)
-        console.log('line 40', response.result.txid)
-        db.logAddOrder(response.result.txid, userId)
-        res.send(response)
-        return null
-      }).catch(e => console.log(e))
+        // eslint-disable-next-line promise/no-nesting
+        return db.logAddOrder(response.result.txid, userId)
+          .then(id => {
+            res.send(response)
+            return null
+          })
+      })
+      .catch(e => console.log(e))
   }
 })
 
@@ -52,11 +54,14 @@ router.post('/add', (req, res) => {
 
 router.post('/cancel/:txid', (req, res) => {
   const { txid } = req.params
-  console.log('cancel txid:', txid)
-  db.logCancelOrder(txid, '5')
   cancelOrder(txid)
-    .then(() => res.sendStatus(200))
-    .catch((err) => res.status(500).send(err.message))
+    .then(() => {
+      return res.sendStatus(200)
+    })
+    .then(() => {
+      return db.logCancelOrder(txid, '5')
+    })
+    .catch(err => res.status(500).send(err.message))
 })
 
 module.exports = router
