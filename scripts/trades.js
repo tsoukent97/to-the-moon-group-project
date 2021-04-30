@@ -1,3 +1,3 @@
-const { addSocketListeners, closeSocket } = require('../client/sockets/trades')
+const { addSocketListeners } = require('../client/sockets/trades')
 
 addSocketListeners()
