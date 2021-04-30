@@ -39,8 +39,8 @@ export function addOrder (order) {
     })
 }
 
-export function getPrevCandles () {
-  return request.get(rootUrl + '/candles')
+export function getCandles (interval) {
+  return request.get(rootUrl + '/candles?interval=' + interval)
     .then(res => {
       return res.body
     })
